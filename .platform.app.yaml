@@ -1,5 +1,9 @@
 name: node
-type: nodejs
+type: nodejs:4.4
+
+dependencies:
+  nodejs:
+    pm2: "^0.15.10"
 
 web:
   commands:
@@ -15,9 +19,8 @@ web:
         '\.png$':
           allow: true
           expires: -1
-dependencies:
-  nodejs:
-    pm2: "^0.15.10"
+
 mounts:
   "/run": "shared:files/run"
+
 disk: 512

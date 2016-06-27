@@ -1,5 +1,7 @@
 // Load the http module to create an http server.
 var http = require('http');
+
+// Load the Platform.sh configuration.
 var config= require("platformsh").config();
 
 var server = http.createServer(function (request, response) {
