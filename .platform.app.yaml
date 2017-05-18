@@ -1,9 +1,9 @@
 name: node
-type: nodejs:4.4
+type: nodejs:6.9
 
 dependencies:
   nodejs:
-    pm2: "^0.15.10"
+    pm2: "^2.0.0"
 
 web:
   commands:
