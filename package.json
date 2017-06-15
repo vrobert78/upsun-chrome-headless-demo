@@ -9,6 +9,6 @@
   "author": "Ori Pekelman",
   "license": "ISC",
   "dependencies": {
-    "platformsh": "^0.0.1"
+    "platformsh": "^1.0.0"
   }
 }
