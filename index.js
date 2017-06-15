@@ -2,7 +2,7 @@
 var http = require('http');
 
 // Load the Platform.sh configuration.
-var config= require("platformsh").config();
+var config = require("platformsh").config();
 
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
