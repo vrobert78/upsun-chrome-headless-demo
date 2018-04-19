@@ -1,5 +1,5 @@
 name: node
-type: nodejs:6.9
+type: nodejs:6.11
 
 dependencies:
   nodejs:
@@ -16,9 +16,10 @@ web:
       # Whether to allow files not matching a rule or not.
       allow: true
       rules:
-        '\.png$':
+        \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
           allow: true
-          expires: -1
+        ^/robots\.txt$:
+          allow: true
 
 mounts:
   "/run": "shared:files/run"
