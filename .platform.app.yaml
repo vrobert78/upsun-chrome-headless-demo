@@ -1,5 +1,5 @@
 name: node
-type: nodejs:6.11
+type: nodejs:10
 
 dependencies:
   nodejs:
