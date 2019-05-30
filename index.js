@@ -7,6 +7,25 @@ const credentials = config.credentials('chrome');
 
 var express = require('express');
 
+var data = {};
+
+let examples = {
+    pdfs: 'PDFs',
+    screenshots: 'Screenshots',
+};
+
+Object.keys(examples).forEach((key) => {
+    data[key] = require(`./examples/${key}.js`);
+    data[key].source = escapeHtml(fs.readFileSync(`./examples/${key}.js`, 'utf8'));
+    data[key].label = services[key];
+});
+
+function escapeHtml(s) {
+    return s.replace(/[^0-9A-Za-z ]/g, function(c) {
+        return "&#" + c.charCodeAt(0) + ";";
+    });
+}
+
 var app = express()
 
 app.get('/', (req, res) => {
@@ -23,9 +42,8 @@ app.get('/', (req, res) => {
 
 <h2>Usage examples</h2>
 <ul>
-  <li><a href="/test">Test page</a></li>
-  <li><a href="/test">Test page</a></li>
-  <li><a href="/test">Test page</a></li>
+  <li><a href="/screenshots">${data['screenshots'].label}</a></li>
+  <li><a href="/test">${data['pdfs'].label}</a></li>
 </ul>
 `);
     res.end(`</body></html>`);
@@ -42,6 +60,13 @@ app.get('/test', (req, res) => {
   res.send('Another page!')
 })
 
+app.get('/screenshots', (req, res) => {
+  res.send('Lorem ipsum')
+})
+
+app.get('/screenshots/source', (req, res) => {
+  res.write(data['screenshots'].source)
+})
 
 
 // Start the server.
