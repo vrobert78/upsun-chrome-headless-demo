@@ -19,8 +19,11 @@ app.get('/', (req, res) => {
     <title>Headless Chrome on Platform.sh</title>
 </head>
 <body>
+<h1>Headless Chrome on Platform.sh</h1>
 <h2>Relationship</h2>
 <p>${relationship}</p>
+<a href="/relationship">Test page</a>
+
 
 <h2>Usage examples</h2>
 <ul>
@@ -32,9 +35,18 @@ app.get('/', (req, res) => {
     res.end(`</body></html>`);
 })
 
+
+app.get('/relationship', (req, res) => {
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.end("<html><head><title>Relationship</title></head><body><pre>"+JSON.stringify(credentials, null, 4) + "</pre></body></html>");
+})
+
+
 app.get('/test', (req, res) => {
   res.send('Another page!')
 })
+
+
 
 // Start the server.
 app.listen(config.port, function() {
