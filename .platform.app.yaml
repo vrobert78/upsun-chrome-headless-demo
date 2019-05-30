@@ -6,7 +6,7 @@ dependencies:
     pm2: "^2.0.0"
 
 relationships:
-  chrome: "chrome:chrome-headless"
+  chrome: "chrome:http"
 
 web:
   commands:
