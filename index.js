@@ -19,7 +19,7 @@ let examples = {
 Object.keys(examples).forEach((key) => {
     data[key] = require(`./examples/${key}.js`);
     data[key].source = escapeHtml(fs.readFileSync(`./examples/${key}.js`, 'utf8'));
-    data[key].label = services[key];
+    data[key].label = examples[key];
 });
 
 function escapeHtml(s) {
