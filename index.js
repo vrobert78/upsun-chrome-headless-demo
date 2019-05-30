@@ -37,8 +37,8 @@ app.get('/', (req, res) => {
 
 
 app.get('/relationship', (req, res) => {
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.end("<html><head><title>Relationship</title></head><body><pre>"+JSON.stringify(credentials, null, 4) + "</pre></body></html>");
+  res.writeHead(200, {"Content-Type": "text/html"});
+  res.end("<html><head><title>Relationship</title></head><body><pre>"+JSON.stringify(credentials, null, 4) + "</pre></body></html>");
 })
 
 
