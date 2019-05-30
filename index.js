@@ -3,7 +3,11 @@ const platformsh = require('platformsh-config');
 
 let config = platformsh.config();
 
-var express = require('express')
+const credentials = config.credentials('chrome');
+
+var express = require('express');
+
+var relationship = JSON.stringify(credentials, null, 4);
 
 var app = express()
 
@@ -12,10 +16,13 @@ app.get('/', (req, res) => {
 //  res.send('Hello World! <a href="/test">Test page</a>')
   res.write(`<html>
 <head>
-    <title>Platform.sh Headless Chrome usage examples</title>
+    <title>Headless Chrome on Platform.sh</title>
 </head>
 <body>
-<h1>Usage examples for Headless Chrome</h1>
+<h2>Relationship</h2>
+<p>${relationship}</p>
+
+<h2>Usage examples</h2>
 <ul>
   <li><a href="/test">Test page</a></li>
   <li><a href="/test">Test page</a></li>
