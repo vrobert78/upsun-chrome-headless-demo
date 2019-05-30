@@ -1,5 +1,7 @@
 const parseUrl = require('parse_url');
 const platformsh = require('platformsh-config');
+const fs = require('fs');
+
 
 let config = platformsh.config();
 
