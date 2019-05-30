@@ -43,9 +43,25 @@ app.get('/', (req, res) => {
 
 
 <h2>Usage examples</h2>
+
+<h3>Take a Screenshot of a page</h3>
+
+<form action="/examples/screenshots.js">
+url: <input type="text" name="urlScreenshot"><input type="submit" value="Submit">
+</form>
+
 <ul>
-  <li><a href="/screenshots">${data['screenshots'].label}</a></li>
-  <li><a href="/test">${data['pdfs'].label}</a></li>
+  <li><a href="/screenshots/source">Source</a></li>
+</ul>
+
+<h3>Make a PDF copy of a page</h3>
+
+<form action="/examples/pdfs.js">
+url: <input type="text" name="urlPDF"><input type="submit" value="Submit">
+</form>
+
+<ul>
+  <li><a href="/pdfs/source">Source</a></li>
 </ul>
 `);
     res.end(`</body></html>`);
