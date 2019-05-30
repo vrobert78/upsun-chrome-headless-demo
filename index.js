@@ -41,7 +41,6 @@ app.get('/', (req, res) => {
 
 <a href="/relationship">Relationship</a>
 
-
 <h2>Puppeteer usage examples</h2>
 
 <h3>Take a Screenshot of a page</h3>
@@ -74,15 +73,11 @@ app.get('/relationship', (req, res) => {
 })
 
 
-app.get('/test', (req, res) => {
-  res.send('Another page!')
-})
-
-app.get('/screenshots', (req, res) => {
-  res.send('Lorem ipsum')
-})
-
 app.get('/screenshots/source', (req, res) => {
+  res.write(data['screenshots'].source)
+})
+
+app.get('/pdfs/source', (req, res) => {
   res.write(data['screenshots'].source)
 })
 

@@ -12,15 +12,6 @@
     "platformsh-config": "^2.0.0",
     "puppeteer": "^1.14.0",
     "express": "^4.16.4",
-    "parse_url": "^0.1.1",
-    "cors": "^2.8.5",
-    "debug": "^4.1.1",
-    "dotenv": "^7.0.0",
-    "p-queue": "^3.2.0",
-    "phantomjs-prebuilt": "^2.1.16",
-    "platformsh-client": "^0.1.96-20",
-    "swagger-jsdoc": "^1.10.3",
-    "swagger-ui-express": "^3.0.10",
-    "webshot": "git://github.com/bbujisic/node-webshot.git"
+    "parse_url": "^0.1.1"
   }
 }
