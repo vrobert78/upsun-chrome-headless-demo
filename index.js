@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 <a href="/relationship">Relationship</a>
 
 
-<h2>Usage examples</h2>
+<h2>Puppeteer usage examples</h2>
 
 <h3>Take a Screenshot of a page</h3>
 
