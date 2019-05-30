@@ -11,7 +11,7 @@ const puppeteer = require('puppeteer');
 (async() => {
 
   const browser = await puppeteer.connect({
-    browserURL: "http://${credentials.host}:${credentials.port}"
+    browserURL: "http://" + credentials.host + ":" + credentials.port
   });
 
 //  const browser = await puppeteer.launch();
