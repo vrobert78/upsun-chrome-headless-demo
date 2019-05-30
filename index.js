@@ -18,16 +18,9 @@ let examples = {
 
 Object.keys(examples).forEach((key) => {
     data[key] = require(`./examples/${key}.js`);
-//    data[key].source = escapeHtml(fs.readFileSync(`./examples/${key}.js`, 'utf8'));
     data[key].source = fs.readFileSync(`./examples/${key}.js`, 'utf8');
     data[key].label = examples[key];
 });
-
-function escapeHtml(s) {
-    return s.replace(/[^0-9A-Za-z ]/g, function(c) {
-        return "&#" + c.charCodeAt(0) + ";";
-    });
-}
 
 var app = express()
 
@@ -47,7 +40,7 @@ app.get('/', (req, res) => {
 <h3>Take a Screenshot of a page</h3>
 
 <form action="/examples/screenshots.js">
-url: <input type="text" name="urlScreenshot"><input type="submit" value="Submit">
+url: <input type="text" name="urlScreenshot" value="Enter a url"><input type="submit" value="Submit">
 </form>
 
 <ul>
@@ -57,7 +50,7 @@ url: <input type="text" name="urlScreenshot"><input type="submit" value="Submit"
 <h3>Make a PDF copy of a page</h3>
 
 <form action="/examples/pdfs.js">
-url: <input type="text" name="urlPDF"><input type="submit" value="Submit">
+url: <input type="text" name="urlPDF" value="Enter a url"><input type="submit" value="Submit">
 </form>
 
 <ul>
