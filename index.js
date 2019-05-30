@@ -1,15 +1,14 @@
-// Load the http module to create an http server.
-var http = require('http');
+var express = require('express')
+var app = express()
 
-const platformsh = require("platformsh-config")
+app.get('/', (req, res) => {
+  res.send('Hello World! <a href="/test">Test page</a>')
+})
 
-let config = platformsh.config();
+app.get('/test', (req, res) => {
+  res.send('Another page!')
+})
 
-const credentials = config.credentials('chrome');
-
-var server = http.createServer(function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.end("<html><head><title>Hello node</title></head><body><h1>Headless Chrome on Platform.sh</h1><h3>Relationship:</h3><pre>"+JSON.stringify(credentials, null, 4) + "</pre></body></html>");
-});
-
-server.listen(config.port);
+app.listen(3000, () => {
+  console.log('Example app listening on port 3000!')
+})
