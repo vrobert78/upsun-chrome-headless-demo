@@ -1,0 +1,2 @@
+chrome:
+  type: chrome-headless:73

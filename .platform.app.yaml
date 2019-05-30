@@ -5,6 +5,9 @@ dependencies:
   nodejs:
     pm2: "^2.0.0"
 
+relationships:
+  chrome: "chrome:http"
+
 web:
   commands:
     start: "PM2_HOME=$PLATFORM_APP_DIR/run pm2 start index.js --no-daemon"
@@ -22,6 +25,12 @@ web:
           allow: true
 
 mounts:
-  "/run": "shared:files/run"
+    "/run": "shared:files/run"
+    'screenshots':
+        source: local
+        source_path: screenshots
+    'pdfs':
+        source: local
+        source_path: pdfs
 
 disk: 512

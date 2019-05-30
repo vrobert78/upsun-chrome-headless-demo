@@ -1,14 +1,17 @@
 {
-  "name": "node_example",
+  "name": "chrome_headless",
   "version": "1.0.0",
-  "description": "a Platform.sh example",
+  "description": "a Platform.sh example for working with headless-chrome and puppeteer",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ori Pekelman",
-  "license": "ISC",
+  "author": "Chad Carlson",
+  "license": "MIT",
   "dependencies": {
-    "platformsh": "^1.0.0"
+    "platformsh-config": "^2.0.0",
+    "puppeteer": "^1.14.0",
+    "express": "^4.16.4",
+    "parse_url": "^0.1.1"
   }
 }
