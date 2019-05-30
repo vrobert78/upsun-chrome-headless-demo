@@ -7,22 +7,18 @@ const credentials = config.credentials('chrome');
 
 var express = require('express');
 
-var relationship = JSON.stringify(credentials, null, 4);
-
 var app = express()
 
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
-//  res.send('Hello World! <a href="/test">Test page</a>')
   res.write(`<html>
 <head>
     <title>Headless Chrome on Platform.sh</title>
 </head>
 <body>
 <h1>Headless Chrome on Platform.sh</h1>
-<h2>Relationship</h2>
-<p>${relationship}</p>
-<a href="/relationship">Test page</a>
+
+<a href="/relationship">Relationship</a>
 
 
 <h2>Usage examples</h2>
