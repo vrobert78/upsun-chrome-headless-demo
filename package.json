@@ -9,6 +9,7 @@
   "author": "Ori Pekelman",
   "license": "ISC",
   "dependencies": {
-    "platformsh": "^1.0.0"
+    "platformsh": "^1.0.0",
+    "puppeteer": "^1.14.0"
   }
 }

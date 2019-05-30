@@ -5,6 +5,10 @@ dependencies:
   nodejs:
     pm2: "^2.0.0"
 
+relationships:
+  redis: "rediscache:redis"
+  chrome: "chrome:chrome-headless"
+
 web:
   commands:
     start: "PM2_HOME=$PLATFORM_APP_DIR/run pm2 start index.js --no-daemon"
