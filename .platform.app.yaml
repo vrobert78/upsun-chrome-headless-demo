@@ -6,7 +6,6 @@ dependencies:
     pm2: "^2.0.0"
 
 relationships:
-  redis: "rediscache:redis"
   chrome: "chrome:chrome-headless"
 
 web:
