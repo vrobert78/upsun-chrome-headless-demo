@@ -9,7 +9,7 @@
   "author": "Chad Carlson",
   "license": "ISC",
   "dependencies": {
-    "platformsh": "^1.0.0",
+    "platformsh-config": "^2.2.4",
     "puppeteer": "^1.14.0"
   }
 }

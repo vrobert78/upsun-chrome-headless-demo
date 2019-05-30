@@ -2,8 +2,12 @@
 var http = require('http');
 
 // Load the Platform.sh configuration.
-var config = require("platformsh").config();
+//var config = require("platformsh").config();
 //var credentials = config.credentials('chrome');
+
+const config = require("platformsh-config").config();
+
+const credentials = config.credentials('chrome');
 
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
