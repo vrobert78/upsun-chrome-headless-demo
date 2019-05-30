@@ -33,10 +33,4 @@ mounts:
     source: local
     source_path: pdfs
 
-hooks:
-    build: !include
-      type: string
-      path: build.sh
-
-
 disk: 512
