@@ -17,9 +17,11 @@ let config = platformsh.config();
 
 const credentials = config.credentials('headless');
 
-    try {
 
-        const getBrowser = async function () {
+
+const getBrowser = async function () {
+
+    try {
 
         const browser = await puppeteer.launch();
         browserURL = 'ws://' + config.ip + ':9222';
@@ -35,11 +37,39 @@ const credentials = config.credentials('headless');
 
     } catch (e) {
 
-        Promise.reject(e);
+        return Promise.reject(e);
 
     }
 
 };
+
+getBrowser();
+
+
+//
+//    try {
+//
+//        const getBrowser = async function () {
+//
+//        const browser = await puppeteer.launch();
+//        browserURL = 'ws://' + config.ip + ':9222';
+//        await puppeteer.connect({ browserWSEndpoint: browserURL });
+//
+//        const page = await browser.newPage();
+//        await page.goto('https://platform.sh');
+//
+//        console.log(await page.content());
+//        await page.screenshot({path: 'screenshots/example.png'});
+//
+//        await browser.close();
+//
+//    } catch (e) {
+//
+//        return Promise.reject(e);
+//
+//    }
+//
+//};
 
 
 
