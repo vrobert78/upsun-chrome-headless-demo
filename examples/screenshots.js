@@ -18,60 +18,90 @@ let config = platformsh.config();
 const credentials = config.credentials('headless');
 
 
-var options = {
-    width: 1280,
-    height: 800,
-    scaleFactor: 2,
-    fullPage: false,
-    defaultBackground: true,
-    timeout: 60, // The Puppeteer default of 30 is too short
-    delay: 0,
-    debug: false,
-    browserURL: false,
-    ...options
-  };
+
+const browser = await puppeteer.launch();
+browserURL = 'ws://' + config.ip + ':9222';
+await puppeteer.connect({ browserWSEndpoint: browserURL });
+
+const page = await browser.newPage();
+await page.goto('https://platform.sh');
+
+console.log(await page.content());
+await page.screenshot({path: 'screenshots/example.png'});
+
+await browser.close();
 
 
 
-let globalBrowser = null;
 
-const getBrowser = async function () {
 
-    if (!globalBrowser) {
-
-        debug('Launch REMOTE Chromium');
-
-        try {
-
-            const ip = await lookup(options.browserURL.hostname);
-            const browserURL = `http://${ip.address}:${options.browserURL.port}`;
-
-            console.log(ip)
-            console.log(browserURL)
-
-            const browser = await puppeteer.connect({browserURL: browserURL})
 //
-////            const ip2 = await lookup(credentials.host);
-////            debug(ip2.address);
+//var options = {
+//    width: 1280,
+//    height: 800,
+//    scaleFactor: 2,
+//    fullPage: false,
+//    defaultBackground: true,
+//    timeout: 60, // The Puppeteer default of 30 is too short
+//    delay: 0,
+//    debug: false,
+//    browserURL: false,
+//    ...options
+//  };
 //
-//            const browerURL = "http://" + config.ip + ":9222";
 //
-//            const browser = await puppeteer.connect({
-////                browserWSEndpoint: "ws://" + config.ip + ":9222/devtools/browser/e8d1f39a-c94f-4337-b585-8721337a080a",
-//                browserURL: "http://" + config.ip + ":9222"
-//            });
+//
+//let globalBrowser = null;
+//
+//const getBrowser = async function () {
+//
+//    if (!globalBrowser) {
+//
+//        try {
+//
+//            const ip = await lookup(options.browserURL.hostname);
+//            const browserURL = `http://${ip.address}:${options.browserURL.port}`;
+//
+//            console.log(ip)
+//            console.log(browserURL)
+//
+//            const browser = await puppeteer.connect({browserURL: browserURL})
+////
+//////            const ip2 = await lookup(credentials.host);
+//////            debug(ip2.address);
+////
+////            const browerURL = "http://" + config.ip + ":9222";
+////
+////            const browser = await puppeteer.connect({
+//////                browserWSEndpoint: "ws://" + config.ip + ":9222/devtools/browser/e8d1f39a-c94f-4337-b585-8721337a080a",
+////                browserURL: "http://" + config.ip + ":9222"
+////            });
+//
+//
+//        } catch (e) {
+//            return Promise.reject(e)
+//        }
+//
+//    }
+//
+//};
+//
+//
+//getBrowser();
 
 
-        } catch (e) {
-            return Promise.reject(e)
-        }
+// From talk https://www.youtube.com/watch?v=7-XnEMrQnn4
+// TAKE A SCREENSHOT
 
-    }
+//puppeteer.launch().then(async browser => {
+//    const page = await browser.newPage();
+//    await page.goto('https://example.com');
+//    await page.screenshot({path: 'screenshots/example.png'})
+//
+//    await browser.close();
+//})
+//
 
-};
-
-
-getBrowser();
 
 //
 //  const getBrowser = async function () {
