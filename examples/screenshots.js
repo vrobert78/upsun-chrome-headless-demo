@@ -25,7 +25,13 @@ const getBrowser = async function () {
 
 //        const browser = await puppeteer.launch();
         const browserURL = 'ws://' + config.ip + ':9222';
-        const browser = await puppeteer.connect({ browserWSEndpoint: browserURL });
+
+        console.log(browserURL);
+
+//        const browser = await puppeteer.connect({ browserWSEndpoint: browserURL });
+        const browser = await puppeteer.connect({ browserURL: ${browserURL} });
+
+        console.log(browser);
 
         const page = await browser.newPage();
         await page.goto('https://platform.sh');
