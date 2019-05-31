@@ -5,7 +5,7 @@ const fs = require('fs');
 
 let config = platformsh.config();
 
-const credentials = config.credentials('chrome');
+const credentials = config.credentials('headless');
 
 var express = require('express');
 
