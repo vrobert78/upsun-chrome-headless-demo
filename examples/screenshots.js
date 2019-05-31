@@ -17,6 +17,22 @@ let config = platformsh.config();
 
 const credentials = config.credentials('headless');
 
+
+var options = {
+    width: 1280,
+    height: 800,
+    scaleFactor: 2,
+    fullPage: false,
+    defaultBackground: true,
+    timeout: 60, // The Puppeteer default of 30 is too short
+    delay: 0,
+    debug: false,
+    browserURL: false,
+    ...options
+  };
+
+
+
 let globalBrowser = null;
 
 const getBrowser = async function () {
@@ -27,13 +43,20 @@ const getBrowser = async function () {
 
         try {
 
-//            const ip2 = await lookup(credentials.host);
-//            debug(ip2.address);
+            const ip = await lookup(options.browserURL.hostname);
+            const browserURL = `http://${ip.address}:${options.browserURL.port}`;
 
-            const browser = await puppeteer.connect({
-//                browserWSEndpoint: "ws://" + config.ip + ":9222/devtools/browser/e8d1f39a-c94f-4337-b585-8721337a080a",
-                browserURL: "http://" + config.ip + ":9222"
-            });
+            const browser = await puppeteer.connect(browserURL)
+//
+////            const ip2 = await lookup(credentials.host);
+////            debug(ip2.address);
+//
+//            const browerURL = "http://" + config.ip + ":9222";
+//
+//            const browser = await puppeteer.connect({
+////                browserWSEndpoint: "ws://" + config.ip + ":9222/devtools/browser/e8d1f39a-c94f-4337-b585-8721337a080a",
+//                browserURL: "http://" + config.ip + ":9222"
+//            });
 
 
         } catch (e) {
