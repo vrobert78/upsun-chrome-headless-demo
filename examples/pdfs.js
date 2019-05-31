@@ -5,7 +5,7 @@ const platformsh = require('platformsh-config');
 let config = platformsh.config();
 const credentials = config.credentials('headless');
 
-const takeScreenshot = async function () {
+const makePDF = async function () {
 
     try {
 
@@ -29,3 +29,5 @@ const takeScreenshot = async function () {
     }
 
 };
+
+makePDF();

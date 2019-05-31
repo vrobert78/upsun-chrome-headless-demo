@@ -28,27 +28,4 @@ const takeScreenshot = async function () {
 
 };
 
-
-//const takeScreenshot = async function () {
-//
-//    try {
-//
-//        const browser = getBrowser();
-//
-//        const page = await browser.newPage();
-//        await page.goto('https://google.com');
-//        await page.screenshot({path: 'screenshots/example.png'});
-//
-//        await browser.close();
-//
-//
-//    } catch (e) {
-//
-//        return Promise.reject(e);
-//
-//    }
-//
-//}
-
-//getBrowser();
 takeScreenshot();
