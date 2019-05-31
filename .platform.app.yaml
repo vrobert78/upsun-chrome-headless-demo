@@ -25,6 +25,9 @@ web:
         ^/robots\.txt$:
           allow: true
 
+hooks:
+  deploy: ./build.sh
+
 mounts:
   "/run": "shared:files/run"
   'screenshots':

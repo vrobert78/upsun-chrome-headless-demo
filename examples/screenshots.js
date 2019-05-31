@@ -25,11 +25,8 @@ const getBrowser = async function () {
 
         try {
 
-            const ip = await lookup(credentials.hostname);
-            debug(ip);
-
             const ip2 = await lookup(credentials.host);
-            debug(ip2);
+            debug(ip2.address);
 
 
         } catch (e) {
