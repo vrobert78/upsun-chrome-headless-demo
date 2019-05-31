@@ -29,7 +29,7 @@ const getBrowser = async function () {
         console.log(browserURL);
 
 //        const browser = await puppeteer.connect({ browserWSEndpoint: browserURL });
-        const browser = await puppeteer.connect({ browserURL: ${browserURL} });
+        const browser = await puppeteer.connect({browserURL: browserURL});
 
         console.log(browser);
 
