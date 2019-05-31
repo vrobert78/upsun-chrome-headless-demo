@@ -10,7 +10,7 @@ const credentials = config.credentials('chrome');
 (async() => {
 
   const browser = await puppeteer.connect({
-    browserURL: "http://" + credentials.host + ":" + credentials.port
+    browserURL: "http://" + credentials.host + ":9222"
   });
 
 //  const browser = await puppeteer.launch();
