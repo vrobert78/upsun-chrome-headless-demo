@@ -24,7 +24,7 @@ const getBrowser = async function () {
     try {
 
 //        const browser = await puppeteer.launch();
-        const browserURL = 'ws://' + config.ip + ':9222';
+        const browserURL = 'http://' + credentials.ip + ':9222';
 
         console.log(browserURL);
 
