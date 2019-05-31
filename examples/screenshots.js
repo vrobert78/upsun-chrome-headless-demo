@@ -17,21 +17,29 @@ let config = platformsh.config();
 
 const credentials = config.credentials('headless');
 
+    try {
 
+        const getBrowser = async function () {
 
-const browser = await puppeteer.launch();
-browserURL = 'ws://' + config.ip + ':9222';
-await puppeteer.connect({ browserWSEndpoint: browserURL });
+        const browser = await puppeteer.launch();
+        browserURL = 'ws://' + config.ip + ':9222';
+        await puppeteer.connect({ browserWSEndpoint: browserURL });
 
-const page = await browser.newPage();
-await page.goto('https://platform.sh');
+        const page = await browser.newPage();
+        await page.goto('https://platform.sh');
 
-console.log(await page.content());
-await page.screenshot({path: 'screenshots/example.png'});
+        console.log(await page.content());
+        await page.screenshot({path: 'screenshots/example.png'});
 
-await browser.close();
+        await browser.close();
 
+    } catch(e) {
 
+        Promise.reject(e);
+
+    }
+
+};
 
 
 
