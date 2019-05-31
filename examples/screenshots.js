@@ -1,3 +1,5 @@
+const debug = require('debug')('snap');
+
 const {promisify} = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
