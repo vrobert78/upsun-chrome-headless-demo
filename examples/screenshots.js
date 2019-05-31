@@ -46,7 +46,7 @@ const getBrowser = async function () {
             const ip = await lookup(options.browserURL.hostname);
             const browserURL = `http://${ip.address}:${options.browserURL.port}`;
 
-            const browser = await puppeteer.connect(browserURL)
+            const browser = await puppeteer.connect({browserURL: browserURL})
 //
 ////            const ip2 = await lookup(credentials.host);
 ////            debug(ip2.address);
