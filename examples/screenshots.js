@@ -33,7 +33,7 @@ const credentials = config.credentials('headless');
 
         await browser.close();
 
-    } catch(e) {
+    } catch (e) {
 
         Promise.reject(e);
 
