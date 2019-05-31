@@ -17,4 +17,4 @@ const credentials = config.credentials('chrome');
   await page.goto('http://platform.sh');
   await page.screenshot({path: 'screenshots/example.png'});
   await browser.close();
-});
+})();
