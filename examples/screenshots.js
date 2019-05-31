@@ -12,11 +12,13 @@ const getBrowser = async function () {
         const browserURL = 'http://' + credentials.ip + ':9222';
         const browser = await puppeteer.connect({browserURL: browserURL});
 
-        const page = await browser.newPage();
-        await page.goto('https://google.com');
-        await page.screenshot({path: 'screenshots/example.png'});
+//        const page = await browser.newPage();
+//        await page.goto('https://google.com');
+//        await page.screenshot({path: 'screenshots/example.png'});
+//
+//        await browser.close();
 
-        await browser.close();
+        return browser
 
     } catch (e) {
 
@@ -26,4 +28,27 @@ const getBrowser = async function () {
 
 };
 
-getBrowser();
+
+const takeScreenshot = async function () {
+
+    try {
+
+        const browser = getBrowser();
+
+        const page = await browser.newPage();
+        await page.goto('https://google.com');
+        await page.screenshot({path: 'screenshots/example.png'});
+
+        await browser.close();
+
+
+    } catch (e) {
+
+        return Promise.reject(e);
+
+    }
+
+}
+
+//getBrowser();
+takeScreenshot();
