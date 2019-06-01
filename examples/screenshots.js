@@ -34,4 +34,5 @@ const takeScreenshot = async function (url) {
 
 };
 
-//takeScreenshot();
+var url = "https://en.wikipedia.org/wiki/Duck_typing";
+takeScreenshot(url);

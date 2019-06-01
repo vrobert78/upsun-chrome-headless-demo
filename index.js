@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 
 <form>
 <input type="text" id="takeScreenshot" name="urlScreenshot"/>
-<input type="button" onclick="takeScreenshot(this.form.urlScreenshot.value)"/>
+<input type="submit" value="Submit" onclick="takeScreenshot(this.form.urlScreenshot.value);"/>
 </form>
 
 <ul>
@@ -74,7 +74,7 @@ app.get('/screenshots/source', (req, res) => {
 })
 
 app.get('/pdfs/source', (req, res) => {
-  res.write(data['screenshots'].source)
+  res.write(data['pdfs'].source)
 })
 
 
