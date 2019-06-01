@@ -40,6 +40,9 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page</h3>
 
+<input type="text" id="takeScreenshot" name="urlScreenshot"/>
+<button onclick="takeScreenshot(document.getElementById('takeScreenshot').value)">Submit</button>
+
 <form>
 <input type="text" id="takeScreenshot" name="urlScreenshot"/>
 <input type="submit" value="Submit" onclick="takeScreenshot(this.form.urlScreenshot.value);"/>
