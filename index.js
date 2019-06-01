@@ -30,6 +30,14 @@ app.get('/', (req, res) => {
 <head>
     <title>Headless Chrome on Platform.sh</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("#hiddenResultSS").hide()
+      $("#show").click(function(){
+        $("#hiddenResultSS").show();
+      });
+    });
+    </script>
 </head>
 <body>
 <h1>Headless Chrome on Platform.sh</h1>
@@ -44,16 +52,9 @@ app.get('/', (req, res) => {
 <input type="text" id="urlScreenshot" name="urlScreenshot2"/>
 <button onclick="takeScreenshot(urlScreenshot.value)">Submit</button>
 
-<button id="first-button" type="button" class="btn"> first button </button>
-<button id="second-button" type="button" class="btn hide"> Pending </button>
-
-<script>
- $("#first-button").click(function(){
-    ev.preventDefault();
-    $('#second-button').removeClass('hide');
-    $('#first-button').addClass('hide');
-  });
-</script>
+<button id="show">Show</button>
+<br><br>
+<a id=hiddenResultSS href="/screenshots/example.png">Result</a>
 
 <ul>
   <li><a href="/screenshots/source">Source</a></li>
