@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
   res.write(`<html>
 <head>
     <title>Headless Chrome on Platform.sh</title>
-    <script type="text/javascript" src="examples/screenshots.js"></script>
 </head>
 <body>
 <h1>Headless Chrome on Platform.sh</h1>
@@ -40,7 +39,7 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page</h3>
 
-<script type="text/javascript" src="examples/screenshots.js"></script>
+<script type="text/javascript" src="/examples/screenshots.js"></script>
 <input type="text" id="urlScreenshot" name="urlScreenshot2"/>
 <button onclick="takeScreenshot(urlScreenshot.value)">Submit</button>
 
