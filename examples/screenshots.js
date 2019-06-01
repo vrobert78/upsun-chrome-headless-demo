@@ -15,7 +15,11 @@ const takeScreenshot = async function (url) {
         const browser = await puppeteer.connect({browserURL: browserURL});
 
         const page = await browser.newPage();
-        await page.goto('https://platform.sh');
+//        await page.goto('https://platform.sh');
+
+
+        await page.goto(url);
+
         await page.screenshot({path: 'screenshots/example.png'});
 
         await browser.close();
