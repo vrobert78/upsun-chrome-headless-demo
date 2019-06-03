@@ -95,7 +95,7 @@ app.get('/examples/pdf', (req, res) => {
 })
 
 // Screenshot result
-app.get('/screenshots/result', function(req, res){
+app.get('/screenshots/result', async function(req, res){
   await screenshot.takeScreenshot(req.query['screenshotURL'], screenshotID)
   const file = `screenshots/${screenshotID}.png`;
   res.download(file); // Set disposition and send it.
