@@ -22,7 +22,11 @@ Object.keys(examples).forEach((key) => {
     data[key].label = examples[key];
 });
 
-var app = express()
+//var app = express()
+
+var app = express().configure(function () {
+    this.use('/screenshots', express.static('screenshots')); // <-- This right here
+});
 
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
@@ -54,7 +58,7 @@ app.get('/', (req, res) => {
 
 <button id="show">Show</button>
 <br><br>
-<a id=hiddenResultSS href="/result">Result</a>
+<a id=hiddenResultSS href="/screenshots/example.png">Result</a>
 
 <ul>
   <li><a href="/examples/screenshot">Source</a></li>
@@ -88,8 +92,13 @@ app.get('/examples/pdf', (req, res) => {
   res.write(data['pdfs'].source)
 })
 
-app.get('/result', function(req, res){
+app.get('/screenshots/result', function(req, res){
   const file = `screenshots/example.png`;
+  res.download(file); // Set disposition and send it.
+});
+
+app.get('/pdfs/result', function(req, res){
+  const file = `screenshots/example.pdf`;
   res.download(file); // Set disposition and send it.
 });
 
