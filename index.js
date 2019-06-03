@@ -38,15 +38,6 @@ app.get('/', (req, res) => {
 <head>
     <title>Headless Chrome on Platform.sh</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="./examples/screenshots.js">
-    $(document).ready(function(){
-      $("#hiddenResultSS").hide()
-      $("#submit").click(function(){
-        takeScreenshot(urlScreenshot.value, screenshotID)
-        $("#hiddenResultSS").show();
-      });
-    });
-    </script>
 </head>
 <body>
 <h1>Headless Chrome on Platform.sh</h1>
@@ -55,19 +46,21 @@ app.get('/', (req, res) => {
 
 <h2>Puppeteer usage examples</h2>
 
+
+
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<input type="text" id="urlScreenshot" name="urlScreenshot2"/>
-<button id="submit">Submit</button>
-<a id="hiddenResultSS" href="/screenshots/result">Result</a>
+<input type="text" id="urlScreenshot" name="urlScreenshot2">
 
-<button onclick="myFunction()">Click me</button>
+<button onclick="myFunction()">Submit</button>
 
-<p id="demo"></p>
+<p id="resultSS"></p>
 
+<script src="/examples/screenshots.js">
 <script>
 function myFunction() {
-  document.getElementById("demo").innerHTML = "<a id='hiddenResultSS' href='/screenshots/result'>Result</a>";
+  takeScreenshot(urlScreenshot.value, screenshotID)
+  document.getElementById("resultSS").innerHTML = "<a href='/screenshots/result'>Result</a>";
 }
 </script>
 
