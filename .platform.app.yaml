@@ -25,7 +25,7 @@ web:
           allow: true
 
 hooks:
-  deploy: ./build.sh
+  build: browserify index.js
 
 mounts:
   "/run": "shared:files/run"
