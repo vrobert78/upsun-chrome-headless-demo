@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 
 <button id="show">Show</button>
 <br><br>
-<a id=hiddenResultSS href="/screenshots/example.png">Result</a>
+<a id=hiddenResultSS href="file:///screenshots/example.png">Result</a>
 
 <ul>
   <li><a href="/screenshots/source">Source</a></li>
