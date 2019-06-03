@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 
 var express = require('express');
 
-var screenshots = require("./examples/mods.js");
+var screenshot = require("./examples/mods.js");
 
 // Get the credentials for headless Chrom
 let config = platformsh.config();
@@ -62,9 +62,15 @@ app.get('/', (req, res) => {
 
 <script src="examples/mods.js"></script>
 <input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/">
-<button id="submit" onclick="takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
+<button id="submitSS" onclick="takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
 
 <a href="/screenshots/result">Result</a>
+
+
+<form method="get" action="/screenshots/result">
+    <input type="text" name="screenshotURL">
+    <input type="submit">
+</form>
 
 
 <h3>Make a PDF copy of a page (<a href="/examples/pdf">Source</a>)</h3>
@@ -96,6 +102,8 @@ app.get('/examples/pdf', (req, res) => {
 
 // Screenshot result
 app.get('/screenshots/result', function(req, res){
+//  res.send('Username: ' + req.query['screenshotURL']);
+  screenshot(req.query['screenshotURL'], screenshotID)
   const file = `screenshots/${screenshotID}.png`;
   res.download(file); // Set disposition and send it.
 });
