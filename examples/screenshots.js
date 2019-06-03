@@ -4,7 +4,9 @@ const platformsh = require('platformsh-config');
 let config = platformsh.config();
 const credentials = config.credentials('headless');
 
-const takeScreenshot = async function (url, screenshotID) {
+var exports = module.exports = {};
+
+exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
         const browserURL = 'http://' + credentials.ip + ':9222';
@@ -23,6 +25,3 @@ const takeScreenshot = async function (url, screenshotID) {
     }
 
 };
-
-//var url = "https://en.wikipedia.org/wiki/Duck_typing";
-//takeScreenshot(url);
