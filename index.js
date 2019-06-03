@@ -36,6 +36,7 @@ Object.keys(examples).forEach((key) => {
 
 // Build the application
 var app = express()
+app.use(express.static(path.join(__dirname,"styles")));
 
 // Set rate limits
 app.set('trust proxy', 1);
@@ -53,7 +54,7 @@ app.get('/', (req, res) => {
   res.write(`<html>
 <head>
     <title>Headless Chrome on Platform.sh</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 <body>
 
