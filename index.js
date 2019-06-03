@@ -55,15 +55,21 @@ app.get('/', (req, res) => {
 
 <h2>Puppeteer usage examples</h2>
 
-<h3>Take a Screenshot of a page(<a href="/examples/screenshot">Source</a>)</h3>
+<h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
 <input type="text" id="urlScreenshot" name="urlScreenshot2"/>
 <button id="submit">Submit</button>
 <a id="hiddenResultSS" href="/screenshots/result">Result</a>
 
-<ul>
-  <li><a href="/examples/screenshot">Source</a></li>
-</ul>
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "<a id='hiddenResultSS' href='/screenshots/result'>Result</a>";
+}
+</script>
 
 
 
@@ -74,9 +80,6 @@ app.get('/', (req, res) => {
 <input type="text" name="urlPDF" value="Enter a url"><input type="submit" value="Submit">
 </form>
 
-<ul>
-  <li><a href="/examples/pdf">Source</a></li>
-</ul>
 `);
     res.end(`</body></html>`);
 })
