@@ -36,10 +36,11 @@ app.get('/', (req, res) => {
 <head>
     <title>Headless Chrome on Platform.sh</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/examples/screenshots.js">
+    <script type="text/javascript" src="examples/screenshots.js"></script>
+    <script>
     $(document).ready(function(){
       $("#hiddenResultSS").hide()
-      $("#show").click(function(){
+      $("#submit").click(function(){
         takeScreenshot(urlScreenshot.value);
         $("#hiddenResultSS").show();
       });
