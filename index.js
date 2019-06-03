@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
   res.write(`<html>
 <head>
     <title>Headless Chrome on Platform.sh</title>
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
