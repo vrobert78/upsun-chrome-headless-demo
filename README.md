@@ -3,6 +3,7 @@
 This is a simple demo of using headless Chrome on Platform.sh. For now, it demonstrates two simple features of headless Chrome using Puppeteer:
 
 * Taking screenshots of a webpage
+* Take a screenshot, emulating appearance on a mobile device
 * Creating a PDF of a webpage
 
 ## Relevant links
