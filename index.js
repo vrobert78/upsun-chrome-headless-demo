@@ -2,6 +2,7 @@ const parseUrl = require('parse_url');
 const platformsh = require('platformsh-config');
 const fs = require('fs');
 const uuidv4 = require('uuid/v4')
+const rateLimit = require("express-rate-limit");
 
 var express = require('express');
 
@@ -35,6 +36,17 @@ Object.keys(examples).forEach((key) => {
 
 // Build the application
 var app = express()
+
+// Set rate limits
+app.set('trust proxy', 1);
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50 // limit each IP to 50 requests per windowMs
+});
+
+//  apply to all requests
+app.use(limiter);
 
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
