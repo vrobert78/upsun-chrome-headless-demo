@@ -4,7 +4,9 @@ const platformsh = require('platformsh-config');
 let config = platformsh.config();
 const credentials = config.credentials('headless');
 
-const takeScreenshot = async function (url, screenshotID) {
+var exports = module.exports = {};
+
+const exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
         const browserURL = 'http://' + credentials.ip + ':9222';

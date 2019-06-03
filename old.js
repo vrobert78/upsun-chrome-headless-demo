@@ -3,14 +3,10 @@ const platformsh = require('platformsh-config');
 const fs = require('fs');
 const uuidv4 = require('uuid/v4')
 
-var screenshots = require("./examples/screenshots.js");
-
 
 let config = platformsh.config();
 
 const credentials = config.credentials('headless');
-
-
 
 var screenshotID = uuidv4();
 var pdfID = uuidv4();
@@ -38,11 +34,12 @@ app.get('/', (req, res) => {
 <head>
     <title>Headless Chrome on Platform.sh</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="screenshots.js"></script>
     <script>
     $(document).ready(function(){
       $("#hiddenResultSS").hide()
       $("#submit").click(function(){
-        screenshots.takeScreenshot(urlScreenshot.value, screenshotID)
+        takeScreenshot(urlScreenshot.value, screenshotID);
         $("#hiddenResultSS").show();
       });
     });
