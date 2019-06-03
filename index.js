@@ -57,20 +57,18 @@ app.get('/', (req, res) => {
 
 <h2>Usage examples</h2>
 
-
-
-<h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
+<h3>Take a Screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
 
 <form method="get" action="/screenshots/result">
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
 </form>
 
+<h3>Make a PDF copy of a page (<a href="/pdfs/source">Source</a>)</h3>
 
-<h3>Make a PDF copy of a page (<a href="/examples/pdf">Source</a>)</h3>
-
-<form action="/examples/pdfs.js">
-<input type="text" name="urlPDF" value="Enter a url"><input type="submit" value="Submit">
+<form method="get" action="/pdfs/result">
+    <input type="text" name="pdfURL" value="https://platform.sh/">
+    <input type="submit">
 </form>
 
 `);
@@ -85,12 +83,12 @@ app.get('/relationship', (req, res) => {
 
 
 // Screenshot source
-app.get('/examples/screenshot', (req, res) => {
+app.get('/screenshots/source', (req, res) => {
   res.write(data['screenshots'].source)
 })
 
 // PDF source
-app.get('/examples/pdf', (req, res) => {
+app.get('/pdfs/source', (req, res) => {
   res.write(data['pdfs'].source)
 })
 
@@ -102,8 +100,9 @@ app.get('/screenshots/result', async function(req, res){
 });
 
 // PDF result
-app.get('/pdfs/result', function(req, res){
-  const file = `pdfs/${pdfID}.png`;
+app.get('/pdfs/result', async function(req, res){
+  await pdf.makePDF(req.query['pdfURL'], pdfID)
+  const file = `screenshots/${pdfID}.png`;
   res.download(file); // Set disposition and send it.
 });
 

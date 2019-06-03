@@ -1,11 +1,12 @@
 const puppeteer = require('puppeteer');
 const platformsh = require('platformsh-config');
 
-
 let config = platformsh.config();
 const credentials = config.credentials('headless');
 
-const makePDF = async function () {
+var exports = module.exports = {};
+
+exports.makePDF = async function (url, pdfID) {
 
     try {
 
@@ -13,9 +14,9 @@ const makePDF = async function () {
         const browser = await puppeteer.connect({browserURL: browserURL});
 
         const page = await browser.newPage();
-        await page.goto('https://platform.sh', {waitUntil: 'networkidle2'});
+        await page.goto(url, {waitUntil: 'networkidle2'});
         await page.pdf({
-            path: 'pdfs/example.pdf',
+            path: 'pdfs/' + pdfID + '.pdf',
             format: 'letter'
         });
         await browser.close();
@@ -29,5 +30,3 @@ const makePDF = async function () {
     }
 
 };
-
-makePDF();
