@@ -1,0 +1,14 @@
+
+<script src="/examples/screenshots.js">
+<script>
+function myFunction() {
+  takeScreenshot(urlScreenshot.value, screenshotID)
+  document.getElementById("resultSS").innerHTML = "<a href='/screenshots/result'>Result</a>";
+}
+</script>
+
+<input type="text" id="urlScreenshot" name="urlScreenshot2">
+
+<button onclick="myFunction()">Submit</button>
+
+<p id="resultSS"></p>

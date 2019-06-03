@@ -59,22 +59,8 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<script src="/examples/screenshots.js">
-<script>
-function myFunction() {
-  takeScreenshot(urlScreenshot.value, screenshotID)
-  document.getElementById("resultSS").innerHTML = "<a href='/screenshots/result'>Result</a>";
-}
-</script>
-
-<input type="text" id="urlScreenshot" name="urlScreenshot2">
-
-<button onclick="myFunction()">Submit</button>
-
-<p id="resultSS"></p>
-
-<input type="text" id="urlScreenshots" name="urlScreenshots" value="https://platform.sh/">
-<button id="submit" onclick=screenshots.takeScreenshot(urlScreenshots.value, screenshotID)>Submit</button>
+<input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/"></input>
+<button id="submit" onclick=screenshots.takeScreenshot(urlScreenshot.value, screenshotID)>Submit</button>
 
 
 
