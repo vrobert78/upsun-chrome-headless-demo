@@ -16,7 +16,10 @@ exports.emulateScreenshot = async function (url, screenshotID) {
         const page = await browser.newPage();
         await page.emulate(devices['iPhone 6']);
         await page.goto(url);
-        await page.screenshot({path: 'screenshots/' + screenshotID + '.png'});
+        await page.screenshot({
+            fullPage: true,
+            path: 'screenshots/' + screenshotID + '.png'
+        });
 
         await browser.close();
 
