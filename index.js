@@ -55,8 +55,9 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page</h3>
 
+<input type="text" id="urlScreenshot" name="urlScreenshot2"/>
 <button id="submit">Submit</button>
-<a id=hiddenResultSS href="/screenshots/result">Result</a>
+<a id="hiddenResultSS" href="/screenshots/result">Result</a>
 
 <ul>
   <li><a href="/examples/screenshot">Source</a></li>
