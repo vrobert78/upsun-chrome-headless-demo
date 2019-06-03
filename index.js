@@ -11,7 +11,7 @@ const credentials = config.credentials('headless');
 
 
 var screenshotID = uuidv4();
-var pdfID = uuidV4();
+var pdfID = uuidv4();
 
 var express = require('express');
 
