@@ -57,8 +57,8 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/"/>
-<button id="submit" onclick=screenshots.takeScreenshot(urlScreenshot.value, screenshotID)>Submit</button>
+<input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/">
+<button id="submit" onclick="screenshots.takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
 
 <a href="/screenshots/result">Result</a>
 
