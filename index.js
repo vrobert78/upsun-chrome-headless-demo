@@ -51,19 +51,16 @@ app.get('/', (req, res) => {
     <li><a href="https://github.com/platformsh/platformsh-docs/pull/1101">(PR#1101) Adding headless Chrome to Platform.sh documentation</a></li>
 </ul>
 
-<a href="/relationship">Relationship</a>
-
 <h2>Usage examples</h2>
 
 
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/"></input>
+<input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/"/>
 <button id="submit" onclick=screenshots.takeScreenshot(urlScreenshot.value, screenshotID)>Submit</button>
 
-
-
+<a href="/screenshots/result">Result</a>
 
 
 <h3>Make a PDF copy of a page (<a href="/examples/pdf">Source</a>)</h3>
@@ -95,7 +92,7 @@ app.get('/examples/pdf', (req, res) => {
 
 // Screenshot result
 app.get('/screenshots/result', function(req, res){
-  const file = `screenshots/example.png`;
+  const file = `screenshots/${screenshotID}.png`;
   res.download(file); // Set disposition and send it.
 });
 

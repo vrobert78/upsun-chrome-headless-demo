@@ -25,6 +25,3 @@ exports.takeScreenshot = async function (url, screenshotID) {
     }
 
 };
-//
-//var url = "https://platform.sh/";
-//takeScreenshot(url);
