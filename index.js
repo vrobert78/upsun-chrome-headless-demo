@@ -37,7 +37,9 @@ Object.keys(examples).forEach((key) => {
 
 // Build the application
 var app = express()
-app.use(express.static(path.join(__dirname, "/styles")));
+app.use(express.static(__dirname + '/public'));
+//app.use(express.static(path.join(__dirname, "/styles")));
+//app.use('/css',express.static(__dirname +'/css'));
 //app.use(express.static("/styles"))
 
 // Set rate limits
@@ -56,7 +58,7 @@ app.get('/', (req, res) => {
   res.write(`<html>
 <head>
     <title>Headless Chrome on Platform.sh</title>
-    <link rel="stylesheet" type="text/html" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
 
@@ -76,14 +78,14 @@ app.get('/', (req, res) => {
 
 Click submit to generate a png or pdf of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
-<h3>Take a Screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
+<h3>Take a screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
 
 <form method="get" action="/screenshots/result">
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
 </form>
 
-<h3>Take a Screenshot of a page, emulating mobile device (<a href="/emulate/source">Source</a>)</h3>
+<h3>Take a screenshot of a page, emulating a mobile device ('iPhone 6' here) (<a href="/emulate/source">Source</a>)</h3>
 
 <form method="get" action="/emulate/result">
     <input type="text" name="emulateURL" value="https://platform.sh/">
