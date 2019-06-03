@@ -73,7 +73,7 @@ function myFunction() {
 
 <p id="resultSS"></p>
 
-<input type="text" id="urlScreenshots">
+<input type="text" id="urlScreenshots" name="urlScreenshots" value="https://platform.sh/">
 <button id="submit" onclick=screenshots.takeScreenshot(urlScreenshots.value, screenshotID)>Submit</button>
 
 
