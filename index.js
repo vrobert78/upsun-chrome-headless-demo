@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 
 var express = require('express');
 
-var screenshots = require("./screenshots.js");
+//var screenshots = require("./screenshots.js");
 
 // Get the credentials for headless Chrom
 let config = platformsh.config();
@@ -60,7 +60,7 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<script src="examples/screenshots.js"></script>
+<script src="examples/mods.js"></script>
 <input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/">
 <button id="submit" onclick="takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
 
