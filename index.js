@@ -103,7 +103,7 @@ app.get('/examples/pdf', (req, res) => {
 // Screenshot result
 app.get('/screenshots/result', function(req, res){
 //  res.send('Username: ' + req.query['screenshotURL']);
-  screenshot(req.query['screenshotURL'], screenshotID)
+  screenshot.takeScreenshot(req.query['screenshotURL'], screenshotID)
   const file = `screenshots/${screenshotID}.png`;
   res.download(file); // Set disposition and send it.
 });
