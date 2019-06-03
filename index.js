@@ -1,11 +1,17 @@
 const parseUrl = require('parse_url');
 const platformsh = require('platformsh-config');
 const fs = require('fs');
+const uuidv4 = require('uuid/v4')
 
 
 let config = platformsh.config();
 
 const credentials = config.credentials('headless');
+
+
+
+var screenshotID = uuidv4();
+var pdfID = uuidy4();
 
 var express = require('express');
 
@@ -22,11 +28,7 @@ Object.keys(examples).forEach((key) => {
     data[key].label = examples[key];
 });
 
-//var app = express()
-
-var app = express().configure(function () {
-    this.use('/screenshots', express.static('screenshots')); // <-- This right here
-});
+var app = express()
 
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
@@ -34,10 +36,11 @@ app.get('/', (req, res) => {
 <head>
     <title>Headless Chrome on Platform.sh</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script>
+    <script type="text/javascript" src="/examples/screenshots.js">
     $(document).ready(function(){
       $("#hiddenResultSS").hide()
       $("#show").click(function(){
+        takeScreenshot(urlScreenshot.value);
         $("#hiddenResultSS").show();
       });
     });
@@ -52,13 +55,8 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page</h3>
 
-<script type="text/javascript" src="/examples/screenshots.js"></script>
-<input type="text" id="urlScreenshot" name="urlScreenshot2"/>
-<button onclick="takeScreenshot(urlScreenshot.value)">Submit</button>
-
-<button id="show">Show</button>
-<br><br>
-<a id=hiddenResultSS href="/screenshots/example.png">Result</a>
+<button id="submit">Submit</button>
+<a id=hiddenResultSS href="/screenshots/result">Result</a>
 
 <ul>
   <li><a href="/examples/screenshot">Source</a></li>
