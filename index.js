@@ -33,8 +33,6 @@ Object.keys(examples).forEach((key) => {
 // Build the application
 var app = express()
 
-//app.use("/examples", express.static('./examples/'));
-
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
   res.write(`<html>
@@ -50,12 +48,15 @@ app.get('/', (req, res) => {
 
 <ul>
     <li><a href="/relationship">What the relationship looks like on Platform.sh</a></li>
+    <li><a href="https://github.com/GoogleChrome/puppeteer">Puppeteer</a></li>
     <li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Getting Started with Headless Chrome</a></li>
     <li><a href="https://docs.google.com/document/d/1R_EalfZMwznf9o7bASNUqotdM2RF3FpeqPPWLxI1ofI/edit">Going Headless on Platform.sh</a></li>
     <li><a href="https://github.com/platformsh/platformsh-docs/pull/1101">(PR#1101) Adding headless Chrome to Platform.sh documentation</a></li>
 </ul>
 
 <h2>Usage examples</h2>
+
+Click submit to generate a png or pdf of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
 <h3>Take a Screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
 
@@ -102,7 +103,7 @@ app.get('/screenshots/result', async function(req, res){
 // PDF result
 app.get('/pdfs/result', async function(req, res){
   await pdf.makePDF(req.query['pdfURL'], pdfID)
-  const file = `screenshots/${pdfID}.png`;
+  const file = `pdfs/${pdfID}.pdf`;
   res.download(file); // Set disposition and send it.
 });
 
