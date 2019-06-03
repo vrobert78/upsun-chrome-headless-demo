@@ -1,7 +1,7 @@
 "https://{default}/":
     id: main
     type: upstream
-    upstream: "node:http"
+    upstream: "nodejs:http"
 
 "https://www.{default}/":
     type: redirect
