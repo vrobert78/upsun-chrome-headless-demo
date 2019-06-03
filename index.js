@@ -1,3 +1,4 @@
+const path = require('path');
 const parseUrl = require('parse_url');
 const platformsh = require('platformsh-config');
 const fs = require('fs');
@@ -36,6 +37,10 @@ Object.keys(examples).forEach((key) => {
 
 // Build the application
 var app = express()
+app.use(express.static(__dirname + '/public'));
+//app.use(express.static(path.join(__dirname, "/styles")));
+//app.use('/css',express.static(__dirname +'/css'));
+//app.use(express.static("/styles"))
 
 // Set rate limits
 app.set('trust proxy', 1);
@@ -53,34 +58,24 @@ app.get('/', (req, res) => {
   res.write(`<html>
 <head>
     <title>Headless Chrome on Platform.sh</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
 
 <h1>Headless Chrome on Platform.sh</h1>
 
-<h2>Details</h2>
-
-<ul>
-    <li><a href="/relationship">What the relationship looks like on Platform.sh</a></li>
-    <li><a href="https://github.com/GoogleChrome/puppeteer">Puppeteer</a></li>
-    <li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Getting Started with Headless Chrome</a></li>
-    <li><a href="https://docs.google.com/document/d/1R_EalfZMwznf9o7bASNUqotdM2RF3FpeqPPWLxI1ofI/edit">Going Headless on Platform.sh</a></li>
-    <li><a href="https://github.com/platformsh/platformsh-docs/pull/1101">(PR#1101) Adding headless Chrome to Platform.sh documentation</a></li>
-</ul>
-
 <h2>Usage examples</h2>
 
 Click submit to generate a png or pdf of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
-<h3>Take a Screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
+<h3>Take a screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
 
 <form method="get" action="/screenshots/result">
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
 </form>
 
-<h3>Take a Screenshot of a page, emulating mobile device (<a href="/emulate/source">Source</a>)</h3>
+<h3>Take a screenshot of a page, emulating a mobile device ('iPhone 6' here) (<a href="/emulate/source">Source</a>)</h3>
 
 <form method="get" action="/emulate/result">
     <input type="text" name="emulateURL" value="https://platform.sh/">
@@ -93,6 +88,23 @@ Click submit to generate a png or pdf of the <a href="https://platform.sh/">Plat
     <input type="text" name="pdfURL" value="https://platform.sh/">
     <input type="submit">
 </form>
+
+<h2>Details</h2>
+
+<h3>Headless Chrome on Platform.sh</h3>
+
+<ul>
+    <li><a href="/relationship">What the relationship looks like on Platform.sh</a></li>
+    <li><a href="https://docs.google.com/document/d/1R_EalfZMwznf9o7bASNUqotdM2RF3FpeqPPWLxI1ofI/edit">Going Headless on Platform.sh</a></li>
+    <li><a href="https://github.com/platformsh/platformsh-docs/pull/1101">(PR#1101) Adding headless Chrome to Platform.sh documentation</a></li>
+</ul>
+
+<h3>Puppeteer</h3>
+
+<ul>
+    <li><a href="https://github.com/GoogleChrome/puppeteer">Puppeteer</a></li>
+    <li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Getting Started with Headless Chrome</a></li>
+</ul>
 
 `);
     res.end(`</body></html>`);
