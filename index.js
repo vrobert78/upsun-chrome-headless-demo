@@ -32,6 +32,8 @@ Object.keys(examples).forEach((key) => {
 // Build the application
 var app = express()
 
+app.use("/examples", express.static('./examples/'));
+
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
   res.write(`<html>
@@ -58,7 +60,7 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<script src="screenshots.js"></script>
+<script src="examples/screenshots.js"></script>
 <input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/">
 <button id="submit" onclick="takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
 
