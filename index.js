@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
+
 <h1>Headless Chrome on Platform.sh</h1>
 
 <h2>Details</h2>
@@ -57,8 +58,9 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
+<script src="examples/screenshot.js"></script>
 <input type="text" id="urlScreenshot" name="urlScreenshot" value="https://platform.sh/">
-<button id="submit" onclick="screenshots.takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
+<button id="submit" onclick="takeScreenshot(urlScreenshot.value, screenshotID);">Submit</button>
 
 <a href="/screenshots/result">Result</a>
 
