@@ -8,6 +8,11 @@ type: nodejs:10
 relationships:
   headless: "headless:http"
 
+crons:
+  cleanupdemo:
+    spec: '*/30 * * * *'
+    cmd: rm screenshots/* && rm pdfs/*
+
 web:
   commands:
     start: "nodejs index.js"

@@ -8,7 +8,7 @@ var express = require('express');
 var screenshot = require("./examples/screenshots.js");
 var pdf = require("./examples/pdfs.js");
 
-// Get the credentials for headless Chrom
+// Get the credentials for headless Chrome
 let config = platformsh.config();
 const credentials = config.credentials('headless');
 
