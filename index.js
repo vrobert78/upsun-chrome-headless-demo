@@ -6,6 +6,7 @@ const uuidv4 = require('uuid/v4')
 var express = require('express');
 
 var screenshot = require("./examples/screenshots.js");
+var emulate = require("./examples/emulate.js");
 var pdf = require("./examples/pdfs.js");
 
 // Get the credentials for headless Chrome
@@ -14,6 +15,7 @@ const credentials = config.credentials('headless');
 
 // Create a randomly generated ID number for the current demo
 var screenshotID = uuidv4();
+var emulateID = uuidv4();
 var pdfID = uuidv4();
 
 // Define each example
@@ -22,6 +24,7 @@ var data = {};
 let examples = {
     pdfs: 'PDFs',
     screenshots: 'Screenshots',
+    emulate: 'Emulate',
 };
 
 Object.keys(examples).forEach((key) => {
@@ -65,6 +68,13 @@ Click submit to generate a png or pdf of the <a href="https://platform.sh/">Plat
     <input type="submit">
 </form>
 
+<h3>Take a Screenshot of a page, emulating mobile device (<a href="/emulate/source">Source</a>)</h3>
+
+<form method="get" action="/emulate/result">
+    <input type="text" name="emulateURL" value="https://platform.sh/">
+    <input type="submit">
+</form>
+
 <h3>Make a PDF copy of a page (<a href="/pdfs/source">Source</a>)</h3>
 
 <form method="get" action="/pdfs/result">
@@ -88,6 +98,11 @@ app.get('/screenshots/source', (req, res) => {
   res.write(data['screenshots'].source)
 })
 
+// Emulate source
+app.get('/emulate/source', (req, res) => {
+  res.write(data['emulate'].source)
+})
+
 // PDF source
 app.get('/pdfs/source', (req, res) => {
   res.write(data['pdfs'].source)
@@ -97,6 +112,13 @@ app.get('/pdfs/source', (req, res) => {
 app.get('/screenshots/result', async function(req, res){
   await screenshot.takeScreenshot(req.query['screenshotURL'], screenshotID)
   const file = `screenshots/${screenshotID}.png`;
+  res.download(file); // Set disposition and send it.
+});
+
+// Emulate result
+app.get('/emulate/result', async function(req, res){
+  await emulate.emulateScreenshot(req.query['emulateURL'], emulateID)
+  const file = `screenshots/${emulateID}.png`;
   res.download(file); // Set disposition and send it.
 });
 
