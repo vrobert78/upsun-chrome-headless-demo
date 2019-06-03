@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 
 var express = require('express');
 
-//var screenshots = require("./screenshots.js");
+var screenshots = require("./screenshots.js");
 
 // Get the credentials for headless Chrom
 let config = platformsh.config();
@@ -63,6 +63,9 @@ function myFunction() {
 <button onclick="myFunction()">Submit</button>
 
 <p id="resultSS"></p>
+
+<input type="text" id="urlScreenshots">
+<button id="submit" onclick=screenshots.takeScreenshot(urlScreenshots.value, screenshotID)>Submit</button>
 
 
 
