@@ -50,12 +50,6 @@ app.get('/', (req, res) => {
 
 <h3>Take a Screenshot of a page (<a href="/examples/screenshot">Source</a>)</h3>
 
-<input type="text" id="urlScreenshot" name="urlScreenshot2">
-
-<button onclick="myFunction()">Submit</button>
-
-<p id="resultSS"></p>
-
 <script src="/examples/screenshots.js">
 <script>
 function myFunction() {
@@ -63,6 +57,13 @@ function myFunction() {
   document.getElementById("resultSS").innerHTML = "<a href='/screenshots/result'>Result</a>";
 }
 </script>
+
+<input type="text" id="urlScreenshot" name="urlScreenshot2">
+
+<button onclick="myFunction()">Submit</button>
+
+<p id="resultSS"></p>
+
 
 
 
