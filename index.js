@@ -1,3 +1,4 @@
+const path = require('path');
 const parseUrl = require('parse_url');
 const platformsh = require('platformsh-config');
 const fs = require('fs');
@@ -37,6 +38,7 @@ Object.keys(examples).forEach((key) => {
 // Build the application
 var app = express()
 app.use(express.static(path.join(__dirname,"styles")));
+app.use(express.static)
 
 // Set rate limits
 app.set('trust proxy', 1);
