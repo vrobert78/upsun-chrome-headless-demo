@@ -54,10 +54,10 @@ app.get('/', (req, res) => {
 
 <button id="show">Show</button>
 <br><br>
-<a id=hiddenResultSS href="file:///screenshots/example.png">Result</a>
+<a id=hiddenResultSS href="/result">Result</a>
 
 <ul>
-  <li><a href="/screenshots/source">Source</a></li>
+  <li><a href="/examples/screenshot">Source</a></li>
 </ul>
 
 <h3>Make a PDF copy of a page</h3>
@@ -67,7 +67,7 @@ url: <input type="text" name="urlPDF" value="Enter a url"><input type="submit" v
 </form>
 
 <ul>
-  <li><a href="/pdfs/source">Source</a></li>
+  <li><a href="/examples/pdf">Source</a></li>
 </ul>
 `);
     res.end(`</body></html>`);
@@ -80,13 +80,18 @@ app.get('/relationship', (req, res) => {
 })
 
 
-app.get('/screenshots/source', (req, res) => {
+app.get('/examples/screenshot', (req, res) => {
   res.write(data['screenshots'].source)
 })
 
-app.get('/pdfs/source', (req, res) => {
+app.get('/examples/pdf', (req, res) => {
   res.write(data['pdfs'].source)
 })
+
+app.get('/result', function(req, res){
+  const file = `screenshots/example.png`;
+  res.download(file); // Set disposition and send it.
+});
 
 
 // Start the server.
