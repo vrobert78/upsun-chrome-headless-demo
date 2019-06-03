@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 
 var express = require('express');
 
-//var screenshots = require("./screenshots.js");
+var screenshots = require("./examples/mods.js");
 
 // Get the credentials for headless Chrom
 let config = platformsh.config();
