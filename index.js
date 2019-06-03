@@ -36,12 +36,12 @@ app.get('/', (req, res) => {
 <head>
     <title>Headless Chrome on Platform.sh</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script type="text/javascript" src="examples/screenshots.js"></script>
+    <script type="text/javascript" src="screenshots.js"></script>
     <script>
     $(document).ready(function(){
       $("#hiddenResultSS").hide()
       $("#submit").click(function(){
-        takeScreenshot(urlScreenshot.value);
+        takeScreenshot(urlScreenshot.value, screenshotID);
         $("#hiddenResultSS").show();
       });
     });
@@ -70,7 +70,7 @@ app.get('/', (req, res) => {
 <h3>Make a PDF copy of a page</h3>
 
 <form action="/examples/pdfs.js">
-url: <input type="text" name="urlPDF" value="Enter a url"><input type="submit" value="Submit">
+<input type="text" name="urlPDF" value="Enter a url"><input type="submit" value="Submit">
 </form>
 
 <ul>
@@ -96,12 +96,12 @@ app.get('/examples/pdf', (req, res) => {
 })
 
 app.get('/screenshots/result', function(req, res){
-  const file = `screenshots/example.png`;
+  const file = `screenshots/${screenshotID}.png`;
   res.download(file); // Set disposition and send it.
 });
 
 app.get('/pdfs/result', function(req, res){
-  const file = `screenshots/example.pdf`;
+  const file = `pdfs/${pdfID}.png`;
   res.download(file); // Set disposition and send it.
 });
 
