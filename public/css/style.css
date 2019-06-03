@@ -147,7 +147,8 @@ input[type=text], select {
 }
 
 input[type=submit] {
-  width: 25%;
+  background-color: grey;
+  color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
