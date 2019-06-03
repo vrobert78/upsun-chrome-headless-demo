@@ -42,9 +42,18 @@ app.get('/', (req, res) => {
 <body>
 <h1>Headless Chrome on Platform.sh</h1>
 
+<h2>Details</h2>
+
+<ul>
+    <li><a href="/relationship">What the relationship looks like on Platform.sh</a></li>
+    <li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Getting Started with Headless Chrome</a></li>
+    <li><a href="https://docs.google.com/document/d/1R_EalfZMwznf9o7bASNUqotdM2RF3FpeqPPWLxI1ofI/edit">Going Headless on Platform.sh</a></li>
+    <li><a href="https://github.com/platformsh/platformsh-docs/pull/1101">(PR#1101) Adding headless Chrome to Platform.sh documentation</a></li>
+</ul>
+
 <a href="/relationship">Relationship</a>
 
-<h2>Puppeteer usage examples</h2>
+<h2>Usage examples</h2>
 
 
 

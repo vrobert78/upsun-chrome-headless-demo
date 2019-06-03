@@ -6,7 +6,7 @@ const credentials = config.credentials('headless');
 
 var exports = module.exports = {};
 
-const exports.takeScreenshot = async function (url, screenshotID) {
+exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
         const browserURL = 'http://' + credentials.ip + ':9222';
