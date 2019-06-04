@@ -10,7 +10,7 @@ function puppeteerFormatter(credentials) {
 }
 
 // Call this in setup.
-config.registerFormatter("headless", puppeteerFormatter);
+config.registerFormatter("puppeteer", puppeteerFormatter);
 
 
 var exports = module.exports = {};
