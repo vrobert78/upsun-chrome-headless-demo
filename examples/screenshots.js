@@ -12,7 +12,6 @@ function puppeteerFormatter(credentials) {
 // Call this in setup.
 config.registerFormatter("puppeteer", puppeteerFormatter);
 
-
 var exports = module.exports = {};
 
 exports.takeScreenshot = async function (url, screenshotID) {
@@ -20,7 +19,7 @@ exports.takeScreenshot = async function (url, screenshotID) {
     try {
 //        const browserURL = 'http://' + credentials.ip + ':9222';
 //        const browserURL = `http://${credentials.ip}:${credentials.port}`;
-        const formattedURL = config.FormattedCredentials("headless", "puppeteer");
+        const formattedURL = config.formattedCredentials("headless", "puppeteer");
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         const page = await browser.newPage();
