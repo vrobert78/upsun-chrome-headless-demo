@@ -9,7 +9,8 @@ var exports = module.exports = {};
 exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
-        const browserURL = 'http://' + credentials.ip + ':9222';
+//        const browserURL = 'http://' + credentials.ip + ':9222';
+        const browserURL = `http://${credentials.ip}:${credentials.port}`;
         const browser = await puppeteer.connect({browserURL: browserURL});
 
         const page = await browser.newPage();
