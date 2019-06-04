@@ -5,12 +5,12 @@ let config = platformsh.config();
 const credentials = config.credentials('headless');
 
 
-function puppeteerFormatter(credentials) {
-	return `http://${credentials["ip"]}:${credentials["port"]}`;
-}
-
-// Call this in setup.
-config.registerFormatter("puppeteer", puppeteerFormatter);
+//function puppeteerFormatter(credentials) {
+//	return `http://${credentials["ip"]}:${credentials["port"]}`;
+//}
+//
+//// Call this in setup.
+//config.registerFormatter("puppeteer", puppeteerFormatter);
 
 var exports = module.exports = {};
 
