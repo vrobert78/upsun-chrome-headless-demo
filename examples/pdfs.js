@@ -16,7 +16,8 @@ exports.makePDF = async function (url, pdfID) {
         const page = await browser.newPage();
         await page.goto(url, {waitUntil: 'networkidle2'});
         await page.pdf({
-            path: 'pdfs/' + pdfID + '.pdf',
+//            path: 'pdfs/' + pdfID + '.pdf',
+            path: `pdfs/${pdfID}.pdf`,
             format: 'letter',
             printBackground: true
         });

@@ -18,7 +18,7 @@ exports.emulateScreenshot = async function (url, screenshotID) {
         await page.goto(url);
         await page.screenshot({
             fullPage: true,
-            path: 'screenshots/' + screenshotID + '.png'
+            path: `screenshots/${screenshotID}.png`
         });
 
         await browser.close();
