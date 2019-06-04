@@ -1,27 +1,21 @@
 const puppeteer = require('puppeteer');
 const platformsh = require('platformsh-config');
 
+// Define a Config object and get credentials for chrome-headless
 let config = platformsh.config();
 const credentials = config.credentials('headless');
 
-
-//function puppeteerFormatter(credentials) {
-//	return `http://${credentials["ip"]}:${credentials["port"]}`;
-//}
-//
-//// Call this in setup.
-//config.registerFormatter("puppeteer", puppeteerFormatter);
-
 var exports = module.exports = {};
 
+// Create an async function
 exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
-//        const browserURL = 'http://' + credentials.ip + ':9222';
-//        const browserURL = `http://${credentials.ip}:${credentials.port}`;
+        // Connect to chrome-headless using pre-formatted puppeteer credentials
         const formattedURL = config.formattedCredentials("headless", "puppeteer");
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
+        // Open a new page to the given url and take the screenshot
         const page = await browser.newPage();
         await page.goto(url);
         await page.screenshot({
