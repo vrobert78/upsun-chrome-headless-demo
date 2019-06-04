@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const devices = require('puppeteer/DeviceDescriptors');
 const platformsh = require('platformsh-config');
 
 // Define a Config object and get credentials for chrome-headless
