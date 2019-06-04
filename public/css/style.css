@@ -31,7 +31,7 @@
     top:0;
     left:0;
     width:200px;
-    background-image:url(https://platform.sh/logos/redesign/Platformsh_logo_black.svg);
+    background-image:url("img/Platformsh_logo_black.svg");
     background-size:75%;
     background-position:50%;
     background-repeat:no-repeat;
