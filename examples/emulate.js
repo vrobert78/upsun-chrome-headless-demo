@@ -8,7 +8,7 @@ const credentials = config.credentials('headless');
 var exports = module.exports = {};
 
 // Create an async function
-exports.takeScreenshot = async function (url, screenshotID) {
+exports.emulateScreenshot = async function (url, screenshotID) {
 
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
