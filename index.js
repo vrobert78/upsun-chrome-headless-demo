@@ -5,7 +5,7 @@ const express = require('express');
 
 // Require locals
 var pdfs = require("./examples/pdfs.js");
-var pdfs = require("./examples/screenshots.js");
+var screenshots = require("./examples/screenshots.js");
 
 // Build the application
 var app = express();
