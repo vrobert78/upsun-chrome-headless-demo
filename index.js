@@ -38,9 +38,6 @@ Object.keys(examples).forEach((key) => {
 // Build the application
 var app = express()
 app.use(express.static(__dirname + '/public'));
-//app.use(express.static(path.join(__dirname, "/styles")));
-//app.use('/css',express.static(__dirname +'/css'));
-//app.use(express.static("/styles"))
 
 // Set rate limits
 app.set('trust proxy', 1);
