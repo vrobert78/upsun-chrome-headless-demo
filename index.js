@@ -69,7 +69,7 @@ app.get('/screenshots/result', async function(req, res){
   // Generate the screenshot
   await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID)
   // Define and download the file
-  const file = `screenshots/${screenshotID}.pdf`;
+  const file = `screenshots/${screenshotID}.png`;
   res.download(file);
 });
 

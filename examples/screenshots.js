@@ -2,8 +2,8 @@ const puppeteer = require('puppeteer');
 const platformsh = require('platformsh-config');
 
 // Define a Config object and get credentials for chrome-headless
-let config = platformsh.config();
-const credentials = config.credentials('headless');
+//let config = platformsh.config();
+//const credentials = config.credentials('headless');
 
 var exports = module.exports = {};
 
@@ -12,6 +12,7 @@ exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
+        let config = platformsh.config();
         const formattedURL = config.formattedCredentials("headless", "puppeteer");
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
