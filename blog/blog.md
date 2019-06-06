@@ -1,6 +1,85 @@
 # Going Headless on Platform.sh
 
-Intro
+Platform.sh is proud to announce the availability of [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome) as a service. When used in combination with the Node.js library [Puppeteer](https://github.com/GoogleChrome/puppeteer), the headless browser becomes a useful tool for running automated testing on your web applications. Puppeteer provides an API to control the headless browser over the DevTools protocol, giving you the ability to generate PDFs, take screenshots, and much more.
+
+In this post, we'll show you how to configure Headless Chrome on a project, and then build a simple Node.js application using [ExpressJS](https://expressjs.com/) that generates screenshots and PDFs of a given website. 
+
+## Configuring Headless Chrome on Platform.sh
+
+Headless Chrome can be configured on an existing project on Platform.sh just as easily as any other service we maintain. All it takes is to first define the `chrome-headless` container in your `.platform/services.yaml`:
+
+```yaml
+headless:
+    type: chrome-headless:73
+```
+
+along with a complementary relationship definition in your `.platform.app.yaml`:
+
+```
+relationships:
+  headless: "headless:http"
+```
+
+Using [Puppeteer](https://github.com/GoogleChrome/puppeteer) with the Platform.sh [Config Reader](https://github.com/platformsh/config-reader-nodejs) library requires that you use Node.js 10 or later
+
+```
+type: nodejs:10
+```
+
+and that both libraries are included in your `package.json` dependencies:
+
+```
+  "dependencies": {
+    "platformsh-config": "^2.0.0",
+    "puppeteer": "^1.14.0",
+  }
+```
+
+If you're running a Node.js application, you're all set! Projects running with non-Node.js runtimes will have to additionally upgrade the current installation of Node.js, which can be easily done using the Node Version Manger and following the instructions outlined in the [documentation](https://docs.platform.sh/languages/nodejs/nvm.html). 
+
+## Using Headless Chrome and Puppeteer on Platform.sh
+
+Now that we have configured Headless Chrome on Platform.sh, let's build something that uses Puppeteer! 
+
+### Generating PDFs
+
+We're first going to create a simple Node.js application using the [ExpressJS](https://expressjs.com/) framework that will generate a PDF copy of any URL that a user provides. 
+
+We've already defined out `services.yaml` above, so let's define our application in `.platform.app.yaml`:
+
+```yaml
+name: nodejs
+
+type: nodejs:10
+
+relationships:
+  headless: "headless:http"
+
+crons:
+  cleanup:
+    spec: '*/30 * * * *'
+    cmd: rm pdfs/*
+
+web:
+  commands:
+    start: "nodejs index.js"
+
+mounts:
+  "/run": "shared:files/run"
+  "/pdfs": "shared:files/pdfs"
+
+disk: 512
+```
+
+Our application (`nodejs`) will run Node.js 10 with a single relationship `headless`. 
+
+Additionally, we define two mounts: `/run` is generated during the build process and actually runs our application, and `/pdfs` will become the writable directory our generated PDFs will be saved to. 
+
+In order to make sure that this second mount doesn't fill up with files as people use our application, a `cron` job has also been included that empties that directory every thirty minutes.
+
+
+
+
 
 Some links:
 
@@ -174,9 +253,7 @@ Create an `examples/pdfs.js` file.
 
 It defines and exports the async function `makePDF` which connects to Puppeteer using [Config Reader](https://github.com/platformsh/config-reader-nodejs)'s pre-formatted credentials for the library as the value for the parameter `browserURL` in `puppeteer.connect()`.
 
-It generates a PDF of the given URL using `page.pdf()`, and saves it to the mount `pdfs/` as defined in `path`.
-
-
+It generates a PDF of the given URL using `page.pdf()`, and saves it to the mount `pdfs/` as defined in `path`. It also includes the parameter `printBackground` so that the site's background images are included in the generated PDF.
 
 [page.pdf()](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions)
 
@@ -235,6 +312,14 @@ We'll define our dependencies in `package.json`
     "express-rate-limit": "^4.0.4"
   }
 }
+```
+
+Create a `package-lock.json` file with `npm install` and include the following in a `.gitignore` file:
+
+```
+node_modules
+.DS_Store
+.idea/*
 ```
 
 Commit the changes and push to a project on Platform.sh. 

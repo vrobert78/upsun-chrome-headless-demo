@@ -15,7 +15,6 @@ web:
     start: "nodejs index.js"
 
 mounts:
-  "/run": "shared:files/run"
   "/screenshots": "shared:files/screenshots"
   "/pdfs": "shared:files/pdfs"
 
