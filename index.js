@@ -47,7 +47,7 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
     </br>
-    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
+    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device (iPhone 6)<br>
 </form>
 
 <h2>Generate a PDF of a page</h2>
