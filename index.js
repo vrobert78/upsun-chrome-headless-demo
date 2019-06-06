@@ -4,7 +4,7 @@ const platformsh = require('platformsh-config');
 const express = require('express');
 
 // Require pdf file and its function
-var pdfs = require("./pdfs.js");
+var pdfs = require("./examples/pdfs.js");
 
 // Build the application
 var app = express();
@@ -46,10 +46,8 @@ app.get('/result', async function(req, res){
   res.download(file);
 });
 
-// Create config object to get Platform.sh PORT credentials
+// Get PORT and start the server
 let config = platformsh.config();
-
-// Start the server.
 app.listen(config.port, function() {
     console.log(`Listening on port ${config.port}`)
 });
