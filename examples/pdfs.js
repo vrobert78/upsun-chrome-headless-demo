@@ -24,9 +24,6 @@ exports.makePDF = async function (url, pdfID) {
         return browser
 
     } catch (e) {
-
         return Promise.reject(e);
-
     }
-
 };

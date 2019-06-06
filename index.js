@@ -1,12 +1,11 @@
 const fs = require('fs');
 const uuidv4 = require('uuid/v4')
-const platformsh = require('platformsh-config');
 const express = require('express');
 const rateLimit = require("express-rate-limit");
+const platformsh = require('platformsh-config');
 
 // Require locals
 var pdfs = require("./examples/pdfs.js");
-var screenshots = require("./examples/screenshots.js");
 
 // Build the application
 var app = express();
@@ -47,20 +46,6 @@ Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.
     <input type="text" name="pdfURL" value="https://platform.sh/">
     <input type="submit">
 </form>
-
-<h2>Take a screenshot of a page</h2>
-
-Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
-
-</br></br>
-
-<form method="get" action="/screenshots/result">
-    <input type="text" name="screenshotURL" value="https://platform.sh/">
-    <input type="submit">
-    </br>
-    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device (iPhone 6)<br>
-</form>
-
 `);
     res.end(`</body></html>`);
 })
@@ -73,17 +58,6 @@ app.get('/pdfs/result', async function(req, res){
   await pdfs.makePDF(req.query['pdfURL'], pdfID)
   // Define and download the file
   const file = `pdfs/${pdfID}.pdf`;
-  res.download(file);
-});
-
-// Define Screenshots result route
-app.get('/screenshots/result', async function(req, res){
-  // Create a randomly generated ID number for the current screenshot
-  var screenshotID = uuidv4();
-  // Generate the screenshot
-  await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID, req.query['emulateMobile'])
-  // Define and download the file
-  const file = `screenshots/${screenshotID}.png`;
   res.download(file);
 });
 
