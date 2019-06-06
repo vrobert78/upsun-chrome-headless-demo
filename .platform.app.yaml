@@ -1,41 +1,22 @@
 name: nodejs
+
 type: nodejs:10
 
-# The relationships of the application with services or other applications.
-# The left-hand side is the name of the relationship as it will be exposed
-# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
-# side is in the form `<service name>:<endpoint name>`.
 relationships:
   headless: "headless:http"
 
 crons:
-  cleanupdemo:
+  cleanup:
     spec: '*/30 * * * *'
-    cmd: rm screenshots/* && rm pdfs/*
+    cmd: rm pdfs/*
 
 web:
   commands:
     start: "nodejs index.js"
-    #in this setup you will find your application stdout and stderr in /app/run/logs
-  locations:
-    "/public":
-      passthru: false
-      root: "public"
-      # Whether to allow files not matching a rule or not.
-      allow: true
-      rules:
-        \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
-          allow: true
-        ^/robots\.txt$:
-          allow: true
 
 mounts:
   "/run": "shared:files/run"
-  'screenshots':
-    source: local
-    source_path: screenshots
-  'pdfs':
-    source: local
-    source_path: pdfs
+  "/screenshots": "shared:files/screenshots"
+  "/pdfs": "shared:files/pdfs"
 
 disk: 512
