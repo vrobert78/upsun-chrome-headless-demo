@@ -12,10 +12,10 @@ crons:
 
 web:
   commands:
-    start: "nodejs index.js"
+    start: "node index.js"
 
 mounts:
-  "/screenshots": "shared:files/screenshots"
   "/pdfs": "shared:files/pdfs"
+  "/screenshots": "shared:files/screenshots"
 
 disk: 512
