@@ -46,6 +46,8 @@ The application `nodejs` will require Node.js 10 to use both Puppeteer and the P
 
 Three mounts are defined: one is generated during the build process `/run`, while `/screenshots` and `/pdfs` will be the writable directories that our generated files will be saved to.
 
+A `cron` job is also defined to clear the contents of `/screenshots` and `/pdfs` every thirty minutes.
+
 ```yaml
 name: nodejs
 
@@ -168,7 +170,13 @@ app.listen(config.port, function() {
 
 Create an `examples/pdfs.js` file. 
 
-It defines and exports the async function `makePDF` which connects to Puppeteer using [Config Reader](https://github.com/platformsh/config-reader-nodejs)'s pre-formatted credentials for the library, generates a PDF of the given URL using `page.pdf()`, and saves it to the mount `pdfs/`.
+
+
+It defines and exports the async function `makePDF` which connects to Puppeteer using [Config Reader](https://github.com/platformsh/config-reader-nodejs)'s pre-formatted credentials for the library as the value for the parameter `browserURL` in `puppeteer.connect()`.
+
+It generates a PDF of the given URL using `page.pdf()`, and saves it to the mount `pdfs/` as defined in `path`.
+
+
 
 [page.pdf()](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions)
 
@@ -204,6 +212,8 @@ exports.makePDF = async function (url, pdfID) {
 };
 ```
 
+In 
+
 We'll define our dependencies in `package.json`
 
 ```json
@@ -227,17 +237,23 @@ We'll define our dependencies in `package.json`
 }
 ```
 
-Commit the changes and push to Platform.sh. 
+Commit the changes and push to a project on Platform.sh. 
 
-When the build process has completed, we have an application that can generated PDFs of any url a user provides!
+When the build process has completed, we have an application that can generate PDFs of any url a user provides!
 
 ![](pdf_only.png)
 
 # Create screenshots
 
+In `index.js`, we add another variable that requires our new script `/examples/screenshots.js`.
+
 ```
+// Require locals
+var pdfs = require("./examples/pdfs.js");
 var screenshots = require("./examples/screenshots.js");
 ```
+
+We then include a new section of our front page html for a screenshot input field called `screenshotURL`
 
 ```
 <h2>Take a screenshot of a page</h2>
@@ -250,7 +266,11 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
 </form>
+```
 
+We also define a new route `/screenshots/result` that calls a new async function `takeScreenshot()` from `screenshot.js`. Like `makePDF()` before, it accepts the input field's URL (`screenshotURL`) and a randomly generated ID number for naming the generated PNG file.
+
+```
 // Define Screenshots result route
 app.get('/screenshots/result', async function(req, res){
   // Create a randomly generated ID number for the current screenshot
@@ -262,6 +282,8 @@ app.get('/screenshots/result', async function(req, res){
   res.download(file);
 });
 ```
+
+We create an `examples/screenshot.js` file
 
 ```
 const puppeteer = require('puppeteer');
