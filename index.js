@@ -37,6 +37,17 @@ app.get('/', (req, res) => {
 
 <h1>Headless Chrome on Platform.sh</h1>
 
+<h2>Generate a PDF of a page</h2>
+
+Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
+
+</br></br>
+
+<form method="get" action="/pdfs/result">
+    <input type="text" name="pdfURL" value="https://platform.sh/">
+    <input type="submit">
+</form>
+
 <h2>Take a screenshot of a page</h2>
 
 Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
@@ -48,17 +59,6 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     <input type="submit">
     </br>
     <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device (iPhone 6)<br>
-</form>
-
-<h2>Generate a PDF of a page</h2>
-
-Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
-
-</br></br>
-
-<form method="get" action="/pdfs/result">
-    <input type="text" name="pdfURL" value="https://platform.sh/">
-    <input type="submit">
 </form>
 
 `);
