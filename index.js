@@ -57,6 +57,8 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
 <form method="get" action="/screenshots/result">
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
+    </br>
+    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
 
 `);
@@ -79,7 +81,7 @@ app.get('/screenshots/result', async function(req, res){
   // Create a randomly generated ID number for the current screenshot
   var screenshotID = uuidv4();
   // Generate the screenshot
-  await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID)
+  await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID, req.query['emulateMobile'])
   // Define and download the file
   const file = `screenshots/${screenshotID}.png`;
   res.download(file);

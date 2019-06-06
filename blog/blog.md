@@ -296,6 +296,8 @@ exports.takeScreenshot = async function (url, screenshotID) {
 };
 ```
 
+![](screenshots_added.png)
+
 # Emulate mobile devices
 
 * [page.emulate()](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions)

@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
+const devices = require('puppeteer/DeviceDescriptors');
 const platformsh = require('platformsh-config');
 
 var exports = module.exports = {};
 
 // Create an async function
-exports.takeScreenshot = async function (url, screenshotID) {
+exports.takeScreenshot = async function (url, screenshotID, emulateMobile=false) {
 
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
@@ -14,6 +15,10 @@ exports.takeScreenshot = async function (url, screenshotID) {
 
         // Open a new page to the given url and take the screenshot
         const page = await browser.newPage();
+        // Emulate mobile device if selected
+        if (emulateMobile) {
+            await page.emulate(devices['iPhone 6']);
+        }
         await page.goto(url);
         await page.screenshot({
             fullPage: true,
