@@ -2,6 +2,7 @@ const fs = require('fs');
 const uuidv4 = require('uuid/v4')
 const platformsh = require('platformsh-config');
 const express = require('express');
+const rateLimit = require("express-rate-limit");
 
 // Require locals
 var pdfs = require("./examples/pdfs.js");
@@ -12,6 +13,17 @@ var app = express();
 
 // Define static source for css
 app.use(express.static(__dirname + '/public'));
+
+// Set rate limits
+app.set('trust proxy', 1);
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50 // limit each IP to 50 requests per windowMs
+});
+
+// Apply to all requests
+app.use(limiter);
 
 // Define the index route
 app.get('/', (req, res) => {

@@ -15,11 +15,10 @@ exports.takeScreenshot = async function (url, screenshotID, emulateMobile=false)
 
         // Open a new page to the given url and take the screenshot
         const page = await browser.newPage();
-
+        // Emulate mobile device if selected
         if (emulateMobile) {
             await page.emulate(devices['iPhone 6']);
         }
-
         await page.goto(url);
         await page.screenshot({
             fullPage: true,
