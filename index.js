@@ -1,42 +1,17 @@
-const path = require('path');
-const parseUrl = require('parse_url');
-const platformsh = require('platformsh-config');
 const fs = require('fs');
 const uuidv4 = require('uuid/v4')
+const express = require('express');
 const rateLimit = require("express-rate-limit");
+const platformsh = require('platformsh-config');
 
-var express = require('express');
-
-var screenshot = require("./examples/screenshots.js");
-var emulate = require("./examples/emulate.js");
-var pdf = require("./examples/pdfs.js");
-
-// Get the credentials for headless Chrome
-let config = platformsh.config();
-const credentials = config.credentials('headless');
-
-// Create a randomly generated ID number for the current demo
-var screenshotID = uuidv4();
-var emulateID = uuidv4();
-var pdfID = uuidv4();
-
-// Define each example
-var data = {};
-
-let examples = {
-    pdfs: 'PDFs',
-    screenshots: 'Screenshots',
-    emulate: 'Emulate',
-};
-
-Object.keys(examples).forEach((key) => {
-    data[key] = require(`./examples/${key}.js`);
-    data[key].source = fs.readFileSync(`./examples/${key}.js`, 'utf8');
-    data[key].label = examples[key];
-});
+// Require locals
+var pdfs = require("./examples/pdfs.js");
+var screenshots = require("./examples/screenshots.js");
 
 // Build the application
-var app = express()
+var app = express();
+
+// Define static source for css
 app.use(express.static(__dirname + '/public'));
 
 // Set rate limits
@@ -47,9 +22,10 @@ const limiter = rateLimit({
   max: 50 // limit each IP to 50 requests per windowMs
 });
 
-//  apply to all requests
+// Apply to all requests
 app.use(limiter);
 
+// Define the index route
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
   res.write(`<html>
@@ -61,96 +37,58 @@ app.get('/', (req, res) => {
 
 <h1>Headless Chrome on Platform.sh</h1>
 
-<h2>Usage examples</h2>
+<h2>Generate a PDF of a page</h2>
 
-Click submit to generate a png or pdf of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
+Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
-<h3>Take a screenshot of a page (<a href="/screenshots/source">Source</a>)</h3>
-
-<form method="get" action="/screenshots/result">
-    <input type="text" name="screenshotURL" value="https://platform.sh/">
-    <input type="submit">
-</form>
-
-<h3>Take a screenshot of a page, emulating a mobile device ('iPhone 6' here) (<a href="/emulate/source">Source</a>)</h3>
-
-<form method="get" action="/emulate/result">
-    <input type="text" name="emulateURL" value="https://platform.sh/">
-    <input type="submit">
-</form>
-
-<h3>Make a PDF copy of a page (<a href="/pdfs/source">Source</a>)</h3>
+</br></br>
 
 <form method="get" action="/pdfs/result">
     <input type="text" name="pdfURL" value="https://platform.sh/">
     <input type="submit">
 </form>
 
-<h2>Details</h2>
+<h2>Take a screenshot of a page</h2>
 
-<h3>Headless Chrome on Platform.sh</h3>
+Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
-<ul>
-    <li><a href="/relationship">What the relationship looks like on Platform.sh</a></li>
-    <li><a href="https://docs.google.com/document/d/1R_EalfZMwznf9o7bASNUqotdM2RF3FpeqPPWLxI1ofI/edit">Going Headless on Platform.sh</a></li>
-    <li><a href="https://github.com/platformsh/platformsh-docs/pull/1101">(PR#1101) Adding headless Chrome to Platform.sh documentation</a></li>
-</ul>
+</br></br>
 
-<h3>Puppeteer</h3>
-
-<ul>
-    <li><a href="https://github.com/GoogleChrome/puppeteer">Puppeteer</a></li>
-    <li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Getting Started with Headless Chrome</a></li>
-</ul>
+<form method="get" action="/screenshots/result">
+    <input type="text" name="screenshotURL" value="https://platform.sh/">
+    <input type="submit">
+    </br>
+    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
+</form>
 
 `);
     res.end(`</body></html>`);
 })
 
-// Relationship JSON
-app.get('/relationship', (req, res) => {
-  res.writeHead(200, {"Content-Type": "text/html"});
-  res.end("<html><head><title>Relationship</title></head><body><pre>"+JSON.stringify(credentials, null, 4) + "</pre></body></html>");
-})
-
-
-// Screenshot source
-app.get('/screenshots/source', (req, res) => {
-  res.write(data['screenshots'].source)
-})
-
-// Emulate source
-app.get('/emulate/source', (req, res) => {
-  res.write(data['emulate'].source)
-})
-
-// PDF source
-app.get('/pdfs/source', (req, res) => {
-  res.write(data['pdfs'].source)
-})
-
-// Screenshot result
-app.get('/screenshots/result', async function(req, res){
-  await screenshot.takeScreenshot(req.query['screenshotURL'], screenshotID)
-  const file = `screenshots/${screenshotID}.png`;
-  res.download(file); // Set disposition and send it.
-});
-
-// Emulate result
-app.get('/emulate/result', async function(req, res){
-  await emulate.emulateScreenshot(req.query['emulateURL'], emulateID)
-  const file = `screenshots/${emulateID}.png`;
-  res.download(file); // Set disposition and send it.
-});
-
-// PDF result
+// Define PDF result route
 app.get('/pdfs/result', async function(req, res){
-  await pdf.makePDF(req.query['pdfURL'], pdfID)
+  // Create a randomly generated ID number for the current PDF
+  var pdfID = uuidv4();
+  // Generate the PDF
+  await pdfs.makePDF(req.query['pdfURL'], pdfID)
+  // Define and download the file
   const file = `pdfs/${pdfID}.pdf`;
-  res.download(file); // Set disposition and send it.
+  res.download(file);
 });
 
-// Start the server.
+// Define Screenshots result route
+app.get('/screenshots/result', async function(req, res){
+  // Create a randomly generated ID number for the current screenshot
+  var screenshotID = uuidv4();
+  // Generate the screenshot
+  await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID, req.query['emulateMobile'])
+  // Define and download the file
+  const file = `screenshots/${screenshotID}.png`;
+  res.download(file);
+});
+
+// Get PORT and start the server
+let config = platformsh.config();
 app.listen(config.port, function() {
     console.log(`Listening on port ${config.port}`)
 });
