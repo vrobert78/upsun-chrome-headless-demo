@@ -123,6 +123,7 @@ app.get('/search/result', async function(req, res){
 // Define Page Source result route
 app.get('/pagesource/result', async function(req, res){
     var currentSource = await viewSource.getPageSource(req.query['sourceURL']);
+    res.write(currentSource);
 });
 
 // PDFs source
