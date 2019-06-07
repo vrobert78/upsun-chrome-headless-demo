@@ -17,7 +17,7 @@
     font-family:"Overpass","Helvetica Neue",Arial;
 }
  body{
-    margin-left:200px;
+    margin-left:300px;
 }
  body::before{
     content:'This is a platform.sh \a example \a How splendid. ';
