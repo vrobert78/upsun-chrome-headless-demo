@@ -70,7 +70,7 @@ Search the Platform.sh documentation.
 
 </br></br>
 
-<form method="get" action='/search/result/:searchID'>
+<form method="get" action='/search/result'>
     <input type="text" name="searchField" value="Headless Chrome">
     <input type="submit">
 </form>
@@ -101,31 +101,20 @@ app.get('/screenshots/result', async function(req, res){
 });
 
 // Define Search result route
-app.get('/search/result/:searchID', async function(req, res){
-
-    var searchID = uuidv4();
-
+app.get('/search/result', async function(req, res){
+//    var searchID = uuidv4();
     var links = await searches.searchPage(req.query['searchField'])
-
     res.write(links);
-
-//  // Create a randomly generated ID number for the current screenshot
-//  var screenshotID = uuidv4();
-//  // Generate the screenshot
-//  await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID, req.query['emulateMobile'])
-//  // Define and download the file
-//  const file = `screenshots/${screenshotID}.png`;
-//  res.download(file);
 });
-
-// Screenshots source
-app.get('/screenshots/source', (req, res) => {
-    res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
-})
 
 // PDFs source
 app.get('/pdfs/source', (req, res) => {
     res.write(fs.readFileSync('./examples/pdfs.js', 'utf8'));
+})
+
+// Screenshots source
+app.get('/screenshots/source', (req, res) => {
+    res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
 })
 
 // Search source

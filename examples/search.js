@@ -46,5 +46,3 @@ exports.searchPage = async function (searchTerm) {
         return Promise(e);
     }
 }
-
-https://pr-7-yhhmlra-moqwtrvgc63mo.eu-3.platformsh.site/search/results/:searchID?searchField=Headless+Chrome
