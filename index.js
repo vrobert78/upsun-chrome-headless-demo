@@ -70,7 +70,7 @@ Search the Platform.sh documentation.
 
 </br></br>
 
-<form method="get" action='/search/results/:searchID'>
+<form method="get" action='/search/result'>
     <input type="text" name="searchField" value="Headless Chrome">
     <input type="submit">
 </form>
@@ -101,7 +101,7 @@ app.get('/screenshots/result', async function(req, res){
 });
 
 // Define Search result route
-app.get('/search/results/:searchID', async function(req, res){
+app.get('/search/result', async function(req, res){
 
     var searchID = uuidv4();
 
