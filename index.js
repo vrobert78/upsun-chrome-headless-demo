@@ -7,6 +7,9 @@ const platformsh = require('platformsh-config');
 // Require locals
 var pdfs = require("./examples/pdfs.js");
 var screenshots = require("./examples/screenshots.js");
+var searches = require("./examples/search.js");
+
+var searchRoute = '/search/result/' + uuidv4();
 
 // Build the application
 var app = express();
@@ -37,7 +40,7 @@ app.get('/', (req, res) => {
 
 <h1>Headless Chrome on Platform.sh</h1>
 
-<h2>Generate a PDF of a page</h2>
+<h2>Generate a PDF of a page (<a href="/pdfs/source">Source</a>)</h2>
 
 Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
@@ -48,9 +51,22 @@ Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.
     <input type="submit">
 </form>
 
-<h2>Take a screenshot of a page</h2>
+<h2>Take a screenshot of a page (<a href="/screenshots/source">Source</a>)</h2>
 
 Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
+
+</br></br>
+
+<form method="get" action="/screenshots/result">
+    <input type="text" name="screenshotURL" value="https://platform.sh/">
+    <input type="submit">
+    </br>
+    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
+</form>
+
+<h2>Retrieve search results</h2>
+
+Search the Platform.sh documentation.
 
 </br></br>
 
@@ -86,6 +102,16 @@ app.get('/screenshots/result', async function(req, res){
   const file = `screenshots/${screenshotID}.png`;
   res.download(file);
 });
+
+// Screenshots source
+app.get('/screenshots/source', (req, res) => {
+    res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
+})
+
+// PDFs source
+app.get('/pdfs/source', (req, res) => {
+    res.write(fs.readFileSync('./examples/pdfs.js', 'utf8'));
+})
 
 // Get PORT and start the server
 let config = platformsh.config();
