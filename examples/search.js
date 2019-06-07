@@ -4,7 +4,7 @@ const platformsh = require('platformsh-config');
 var exports = module.exports = {};
 
 // Create an async function
-exports.searchPage = async function (url) {
+exports.searchPage = async function (searchTerm) {
 
     try {
 
@@ -15,10 +15,10 @@ exports.searchPage = async function (url) {
 
         // Open a new page to the given url and take the screenshot
         const page = await browser.newPage();
-        await page.goto(url);
+        await page.goto('https://developers.google.com/web/');
 
         // Type into search box.
-        await page.type('#searchbox input', 'Headless Chrome');
+        await page.type('#searchbox input', searchTerm);
 
         // Wait for suggest overlay to appear and click "show all results".
         const allResultsSelector = '.devsite-suggest-all-results';

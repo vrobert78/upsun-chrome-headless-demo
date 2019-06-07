@@ -70,11 +70,9 @@ Search the Platform.sh documentation.
 
 </br></br>
 
-<form method="get" action="/screenshots/result">
-    <input type="text" name="screenshotURL" value="https://platform.sh/">
+<form method="get" action=`${searchRoute}`>
+    <input type="text" name="searchField" value="Headless Chrome">
     <input type="submit">
-    </br>
-    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
 
 `);
@@ -103,6 +101,22 @@ app.get('/screenshots/result', async function(req, res){
   res.download(file);
 });
 
+// Define Search result route
+app.get(`${searchRoute}`, async function(req, res){
+
+    var links = await searches.searchPage(req.query['searchField'])
+
+    res.write(links);
+
+//  // Create a randomly generated ID number for the current screenshot
+//  var screenshotID = uuidv4();
+//  // Generate the screenshot
+//  await screenshots.takeScreenshot(req.query['screenshotURL'], screenshotID, req.query['emulateMobile'])
+//  // Define and download the file
+//  const file = `screenshots/${screenshotID}.png`;
+//  res.download(file);
+});
+
 // Screenshots source
 app.get('/screenshots/source', (req, res) => {
     res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
@@ -111,6 +125,11 @@ app.get('/screenshots/source', (req, res) => {
 // PDFs source
 app.get('/pdfs/source', (req, res) => {
     res.write(fs.readFileSync('./examples/pdfs.js', 'utf8'));
+})
+
+// Search source
+app.get('/search/source', (req, res) => {
+    res.write(fs.readFileSync('./examples/search.js', 'utf8'));
 })
 
 // Get PORT and start the server
