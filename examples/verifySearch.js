@@ -26,6 +26,7 @@ exports.takeScreenshot = async function (screenshotID, searchTerm, emulateMobile
         await page.click('button#search-icon-legacy')
         await page.waitForSelector('ytd-thumbnail.ytd-video-renderer')
         await page.screenshot({
+            fullPage: true,
             path: `screenshots/${screenshotID}.png`
         })
 

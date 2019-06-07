@@ -4,7 +4,7 @@ const express = require('express');
 const rateLimit = require("express-rate-limit");
 const platformsh = require('platformsh-config');
 
-// Require locals
+// Require local examples
 var pdfs = require("./examples/pdfs.js");
 var screenshots = require("./examples/screenshots.js");
 var searches = require("./examples/search.js");
@@ -173,7 +173,7 @@ app.get('/pagesource/source', (req, res) => {
 
 // Verify Search Appearance source
 app.get('/verifysearch/source', (req, res) => {
-    res.write(fs.readFileSync('./examples/verifySource.js', 'utf8'));
+    res.write(fs.readFileSync('./examples/verifySearch.js', 'utf8'));
 });
 
 // Get PORT and start the server
