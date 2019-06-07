@@ -70,11 +70,10 @@ Search the Platform.sh documentation.
 
 </br></br>
 
-<form method="get" action=`${searchRoute}`>
+<form method="get" action=searchRoute>
     <input type="text" name="searchField" value="Headless Chrome">
     <input type="submit">
 </form>
-
 `);
     res.end(`</body></html>`);
 })
