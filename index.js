@@ -8,8 +8,7 @@ const platformsh = require('platformsh-config');
 var pdfs = require("./examples/pdfs.js");
 var screenshots = require("./examples/screenshots.js");
 var searches = require("./examples/search.js");
-
-var searchRoute = '/search/result/' + uuidv4();
+var viewSource = require("./examples/viewSource.js");
 
 // Build the application
 var app = express();
@@ -74,6 +73,20 @@ Search <a href="https://developers.google.com/web/">https://developers.google.co
     <input type="text" name="searchField" value="Headless Chrome">
     <input type="submit">
 </form>
+
+<h2>View page source (<a href="/pagesource/source">Source</a>)</h2>
+
+View the page source of a given URL.
+
+</br></br>
+
+<form method="get" action='/pagesource/result'>
+    <input type="text" name="sourceURL" value="https://platform.sh/">
+    <input type="submit">
+</form>
+
+<i>Modified from <a href="https://github.com/GoogleChromeLabs/puppeteer-examples/blob/master/view-source.js">GoogleChromeLabs</a>.</i>
+
 `);
     res.end(`</body></html>`);
 })
@@ -102,25 +115,35 @@ app.get('/screenshots/result', async function(req, res){
 
 // Define Search result route
 app.get('/search/result', async function(req, res){
-//    var searchID = uuidv4();
-    var links = await searches.searchPage(req.query['searchField'])
+    // Generate list of links from search results
+    var links = await searches.searchPage(req.query['searchField']);
     res.write(links);
+});
+
+// Define Page Source result route
+app.get('/pagesource/result', async function(req, res){
+    var currentSource = await viewSource.getPageSource(req.query['sourceURL']);
 });
 
 // PDFs source
 app.get('/pdfs/source', (req, res) => {
     res.write(fs.readFileSync('./examples/pdfs.js', 'utf8'));
-})
+});
 
 // Screenshots source
 app.get('/screenshots/source', (req, res) => {
     res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
-})
+});
 
 // Search source
 app.get('/search/source', (req, res) => {
     res.write(fs.readFileSync('./examples/search.js', 'utf8'));
-})
+});
+
+// Page Source source
+app.get('/pagesource/source', (req, res) => {
+    res.write(fs.readFileSync('./examples/viewSource.js', 'utf8'));
+});
 
 // Get PORT and start the server
 let config = platformsh.config();
