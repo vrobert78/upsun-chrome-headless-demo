@@ -66,7 +66,7 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
 
 <h2>Retrieve search results (<a href="/search/source">Source</a>)</h2>
 
-Search the Platform.sh documentation.
+Search <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>.
 
 </br></br>
 
