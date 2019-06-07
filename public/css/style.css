@@ -22,12 +22,12 @@
 }
 
  body {
-    margin-left: 250px;
+    margin-left: 30%;
 }
 
  body::before {
     /* content: 'This is a platform.sh \a example \a How splendid. '; */
-    content: 'This is an demonstration of \a working with Headless \a Chrome and Puppeteer on \a Platform.sh.';
+    content: 'This is a demonstration of \a working with Headless \a Chrome and Puppeteer on \a Platform.sh.';
     white-space: pre;
     padding-top: 150px;
     padding-left: 20px;
@@ -40,7 +40,7 @@
     width: 200px;
     background-image: url(https://platform.sh/logos/redesign/Platformsh_logo_black.svg);
     background-size: 75%;
-    background-position: 50% 10%;
+    background-position: 50% 5%;
     background-repeat: no-repeat;
     height: 200px;
     background-color: white;
