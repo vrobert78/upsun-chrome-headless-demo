@@ -101,9 +101,9 @@ app.get('/screenshots/result', async function(req, res){
 });
 
 // Define Search result route
-app.get('/search/result', async function(req, res){
+app.get('/search/result/', async function(req, res){
 
-    var searchID = uuidv4();
+//    var searchID = uuidv4();
 
     var links = await searches.searchPage(req.query['searchField'])
 
