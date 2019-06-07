@@ -94,7 +94,7 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
 
 </br></br>
 
-<form method="get" action="/verifysource/result">
+<form method="get" action="/verifysearch/result">
     <input type="text" name="verifysearchTerm" value="Platform.sh">
     <input type="submit">
     </br>
@@ -140,12 +140,12 @@ app.get('/pagesource/result', async function(req, res){
     res.write(currentSource);
 });
 
-// Define Verify Source result route
-app.get('/verifysource/result', async function(req, res){
+// Define Verify Search Appearance route
+app.get('/verifysearch/result', async function(req, res){
   // Create a randomly generated ID number for the current screenshot
   var screenshotID = uuidv4();
   // Generate the screenshot
-  await verifySource.takeScreenshot(screenshotID, req,query['verifysearchTerm'], req.query['emulateMobileVS'])
+  await verifySource.takeScreenshot(screenshotID, req.query['verifysearchTerm'], req.query['emulateMobileVS'])
   // Define and download the file
   const file = `screenshots/${screenshotID}.png`;
   res.download(file);
