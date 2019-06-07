@@ -64,13 +64,13 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
 
-<h2>Retrieve search results</h2>
+<h2>Retrieve search results (<a href="/search/source">Source</a>)</h2>
 
 Search the Platform.sh documentation.
 
 </br></br>
 
-<form method="get" action=searchRoute>
+<form method="get" action='/search/results/:searchID'>
     <input type="text" name="searchField" value="Headless Chrome">
     <input type="submit">
 </form>
@@ -101,7 +101,9 @@ app.get('/screenshots/result', async function(req, res){
 });
 
 // Define Search result route
-app.get(`${searchRoute}`, async function(req, res){
+app.get('/search/results/:searchID', async function(req, res){
+
+    var searchID = uuidv4();
 
     var links = await searches.searchPage(req.query['searchField'])
 
