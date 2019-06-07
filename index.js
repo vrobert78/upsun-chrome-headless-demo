@@ -42,6 +42,8 @@ app.get('/', (req, res) => {
 
 <h2>Generate a PDF of a page (<a href="/pdfs/source">Source</a>)</h2>
 
+<i>I need to generate PDFs of pages.</i>
+
 Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
 </br></br>
@@ -53,6 +55,8 @@ Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.
 
 <h2>Take a screenshot of a page (<a href="/screenshots/source">Source</a>)</h2>
 
+<i>Does my site look like I intended it to?</i>
+
 Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
 </br></br>
@@ -61,12 +65,16 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
     </br>
+    <i>How about on mobile devices?</i>
+    </br>
     <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
 
 <h2>Retrieve search results (<a href="/search/source">Source</a>)</h2>
 
-Test the search results of your page. For this demo, search <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>.
+<i>Is my search engine working like I expect it to?</i>
+
+This demo searches <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>.
 
 </br></br>
 
@@ -75,7 +83,22 @@ Test the search results of your page. For this demo, search <a href="https://dev
     <input type="submit">
 </form>
 
+<h2>Test the appearance of search results (<a href="/verifysearch/source">Source</a>)</h2>
+
+<i>How do search results to my users?</i>
+
+In this demo, Puppeteer visits YouTube and types the value provided below in the search bar. It simulates a click on the Search button, and takes a screenshot of the result.
+
+</br></br>
+
+<form method="get" action="/verifysearch/result">
+    <input type="text" name="verifysearchTerm" value="Platform.sh">
+    <input type="submit">
+</form>
+
 <h2>View page source (<a href="/pagesource/source">Source</a>)</h2>
+
+<i>My application renders client-side. Did it work the way I intended it to?</i>
 
 View the page source of a given URL.
 
@@ -87,19 +110,6 @@ View the page source of a given URL.
 </form>
 
 <i>Modified from <a href="https://github.com/GoogleChromeLabs/puppeteer-examples/blob/master/view-source.js">GoogleChromeLabs</a>.</i>
-
-<h2>Test the appearance of search results (<a href="/verifysearch/source">Source</a>)</h2>
-
-Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
-
-</br></br>
-
-<form method="get" action="/verifysearch/result">
-    <input type="text" name="verifysearchTerm" value="Platform.sh">
-    <input type="submit">
-    </br>
-    <input type="checkbox" name="emulateMobileVS" value=true> Emulate mobile device<br>
-</form>
 
 `);
     res.end(`</body></html>`);
@@ -145,7 +155,7 @@ app.get('/verifysearch/result', async function(req, res){
   // Create a randomly generated ID number for the current screenshot
   var screenshotID = uuidv4();
   // Generate the screenshot
-  await verifySource.takeScreenshot(screenshotID, req.query['verifysearchTerm'], req.query['emulateMobileVS'])
+  await verifySource.takeScreenshot(screenshotID, req.query['verifysearchTerm'])
   // Define and download the file
   const file = `screenshots/${screenshotID}.png`;
   res.download(file);

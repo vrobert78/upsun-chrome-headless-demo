@@ -1,5 +1,4 @@
 // Modified from https://github.com/checkly/puppeteer-examples/blob/master/2.%20search/youtube.js
-
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
 const platformsh = require('platformsh-config');
@@ -7,7 +6,7 @@ const platformsh = require('platformsh-config');
 var exports = module.exports = {};
 
 // Create an async function
-exports.takeScreenshot = async function (screenshotID, searchTerm, emulateMobile=false) {
+exports.takeScreenshot = async function (screenshotID, searchTerm) {
 
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
@@ -17,10 +16,6 @@ exports.takeScreenshot = async function (screenshotID, searchTerm, emulateMobile
 
         // Open a new page to the given url and take the screenshot
         const page = await browser.newPage();
-        // Emulate mobile device if selected
-        if (emulateMobile) {
-            await page.emulate(devices['iPhone 6']);
-        }
         await page.goto('https://youtube.com')
         await page.type('#search', searchTerm)
         await page.click('button#search-icon-legacy')
@@ -32,8 +27,9 @@ exports.takeScreenshot = async function (screenshotID, searchTerm, emulateMobile
 
         await browser.close();
 
+        return browser
+
     } catch (e) {
         return Promise.reject(e);
     }
-
-}
+};

@@ -1,0 +1,74 @@
+
+
+(function () {
+  
+  if (typeof(wcData) == 'undefined') {
+    console.log('ERROR: Missing required Webcollage JS object wcData');
+    return;
+  };
+  
+  if (typeof(Webcollage) == 'undefined') {
+    jQuery.ajax({
+      type: 'GET',
+      url: '//scontent.webcollage.net/api/v2/product-content',
+      dataType: 'script',
+      cache: true,
+      success: function(){
+        if ((window.navigator.userAgent.indexOf('MSIE') + window.navigator.userAgent.indexOf('Trident/')) < 0) {  // Block Mosaic on IE<11
+          var mosaicSelector = document.getElementById('wc-mosaic') == null ? 'div.image-container.stp--hero-image-container, div.grid__column.grid__span_sm_6.grid__span_md_6.grid__span_lg_7.undefined' : 'div#wc-mosaic';        
+          Webcollage.loadProductContent('staples', wcData.item, {'mosaic-board': {containerSelector: mosaicSelector}});
+        }
+        Webcollage.loadProductContent('staples', wcData.item, {'power-page': {autoPlayAndStop: true}});
+      }        
+    });
+  };
+  
+  wcData.others = {
+    getCallbackName: function () {
+      // Same day caching
+      var d=new Date();d.setHours(0);d.setMinutes(0);d.setSeconds(0);d.setMilliseconds(0);
+      return "__wccb" + d.getTime();
+    },
+    callSp: function() {
+      (function (d,s,l,t,p) { 
+      t=d.createElement(s);t.type='text/java'+s;t.async=true;t.src=l;p=d.getElementsByTagName(s)[0];p.parentNode.insertBefore(t,p);})(document,'script','//a.sellpoint.net/c/58/sp.js?cv='+Math.floor(Date.now() / 86400000));
+    },
+    callCn: function(item) {
+      window.ccs_cc_args = [['cpn',item],['lang','EN'],['market','US']];
+      (function () {
+         var o = window.ccs_cc_args; o.push(['_SKey', 'd5eea376']); o.push(['_ZoneId', '522bca68e4']); 
+         var sc = document.createElement('script'); sc.type = 'text/javascript'; sc.async = true;sc.src ='//cdn.cnetcontent.com/jsc/h.js';
+         var n = document.getElementsByTagName('script')[0]; n.parentNode.insertBefore(sc, n);
+       })();
+    },
+    callFm: function() {
+    (function () {
+      var wcDiv = document.getElementById('wc-power-page'); 
+      var f = document.createElement('script');
+      f.type = 'text/javascript';f.src = '//media.flixfacts.com/js/loader.js';
+      f.setAttribute('data-flix-distributor', '158');
+      f.setAttribute('data-flix-language', 'us');
+      f.setAttribute('data-flix-brand', '');
+      f.setAttribute('data-flix-mpn', wcData.mpn);
+      f.setAttribute('data-flix-inpage', 'flix-inpage'); 
+      wcDiv.parentElement.appendChild(f);    
+      })();    
+    }
+  };
+  
+  wcData.callOthers = function (json) {
+    if (json.sp) wcData.others.callSp();
+    if (json.cn) wcData.others.callCn(wcData.item);
+    if (json.fm) wcData.others.callFm();
+  };
+      
+  jQuery.ajax({
+    type: 'GET',
+    cache: true,
+    url: 'https://scontent.webcollage.net/staples/wlapi?id='+escape(wcData.item),
+    dataType: 'jsonp',
+    jsonpCallback: wcData.others.getCallbackName,
+    success: wcData.callOthers
+  });
+     
+})();

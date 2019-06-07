@@ -1,0 +1,179 @@
+#inside_holder[pageurl*='Builder'] div#inside_tabs {
+    top: calc(100vh - 120px) !important;
+}
+#inside_joinTheCallChatTab {
+    display: none !important;
+}
+
+#inside_leaveMessageForm .inside_closeCross {
+    color: black !important;
+    font-size: 32px  !important;
+    right: 0px  !important;
+}
+
+#inside_platform_link {
+	pointer-events: none;
+}
+
+#inside_holder {
+	position: fixed;
+	height:0px;
+	z-index: 999999 !important;
+}
+
+#inside_holder .intl-tel-input .country-list {
+    visibility: visible;
+}
+
+/* hide icons on prechat form */
+#inside_holder .inside_chatPane.prechat #inside_emailIcon,
+#inside_holder .inside_chatPane.prechat #inside_printIcon,
+#inside_holder .inside_chatPane.prechat #inside_joinTheCallIcon {
+	display: none;
+}
+
+/* mobile */
+#inside_holder.mobile-device .inside_chatPane {
+	margin: 0;
+}
+
+/* hide print and email icon on offline chat pane */
+.inside_chatPane.offline #inside_printIcon, .inside_chatPane.offline #inside_emailIcon {
+	display: none;
+}
+
+/* button customisation */
+.insideSubmitButton {
+	background-color: #0092db;
+	padding: 6.5px 14px !important;
+	border: none !important;
+	font-size: 12.5px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -0.2px;
+	border-radius: 2px;
+	font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;
+	min-width: 80px;
+}
+#inside_holder .insideSubmitButton.cancel {
+	background-color: #73787a;
+}
+#inside_holder #inside_emailForm {
+	text-align: center;
+}
+#inside_holder #inside_emailForm .inside_systemMessageTitle {
+	background: none !important;
+	font-size: 13px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.46;
+	letter-spacing: normal;
+	text-align: center;
+	color: #000000;
+}
+
+#inside_holder .inside_chatPane.prechat #inside_joinTheCallIcon{
+	display: flex!important;
+}
+
+#inside_holder input#inside_chatSendButton {
+    margin-right: 9px!important;
+    margin-top:3px!important;
+    text-align:center!important;
+    font-weight: 500!important;
+}
+
+ #inside_holder #inside_chatPane_header:after, #inside_chatPaneHeader:after{
+ 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+ 	font-weight: 500!important;
+ 	letter-spacing:0.01px!important;
+ }
+
+#inside_holder[device="2"] #chatHeaderIcons .inside_minimise{
+	display: none;
+}
+
+#inside_holder[device="2"] div.inside_chatPane textarea{
+	font-size: 14px!important;
+}
+
+#inside_holder[device="2"] div.inside_chatPane textarea::placeholder{
+	font-size: 14px!important;
+	color: #858585!important;
+}
+
+#inside_holder input#inside_chatSendButton.active{
+	color: #fff!important
+}
+
+#inside_holder #inside_prechatForm input.insideSubmitButton{
+	padding-top: 9px!important;
+	padding-bottom: 9px!important;
+}
+
+
+#inside_holder:not(.mobile-device) div#inside_tabs, #inside_holder:not(.mobile-device) #inside_joinTheCallChatTab{
+	top: calc(57vh + 120px) !important;
+}
+#inside_holder .inside_chatMessageAssist.status.typing .inside_chatFrom{
+	color:#444!important;
+}
+#inside_holder #inside_chat_send_cell #inside_chatSendButton{
+	max-height: 36px!important;
+}
+
+#inside_holder .inside_visitorNotify.survey.embed .inside_submitButtonHolder .insideSubmitButton {
+text-transform: capitalize!important;
+	}
+
+#inside_holder .inside_cobrowseRequest button.inside_cobrowseAcceptBtn {
+	background: #444;
+	color:#fff;
+}
+
+
+#inside_holder .inside_cobrowseRequest button.inside_cobrowseRejectBtn {
+	background: #ddd;
+	color: #fff;
+}
+ 
+div#inside_holder .inside_cobrowseRequest button.inside_cobrowseAcceptBtn,
+div#inside_holder #closeChatButton{
+		background: #444!important;
+	color:#fff!important;
+	border: 1px solid #444!important;
+}
+
+div#inside_holder .inside_cobrowseRequest button.inside_cobrowseRejectBtn,
+#inside_holder .insideSubmitButton.cancel{
+		background: #fff!important;
+	color: #444!important;
+	border: 1px solid #444!important;
+}
+
+#inside_holder[device="2"] #inside_liveChatTab{
+	max-width: 21px!important;
+} 
+
+#inside_holder[device="2"] #chatHeaderIcons .inside_minimise {
+display: inline-block!important;
+padding-right: 0;
+}
+
+#inside_holder[device="2"] div#inside_tabs{
+	display:none!important;
+}
+
+
+#inside_holder .closeChat.overlay #closeChatHolder .insideSubmitButton,
+#inside_holder .inside_cobrowseRequest .inside_cobrowseAcceptBtn{
+	border-radius: 20px!important;
+	text-transform: capitalize!important;
+}
+
+#inside_holder #inside_leaveMessageForm input.inside_sendButton{
+    margin-left:auto!important;
+}

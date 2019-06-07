@@ -1,0 +1,74 @@
+/*** Protected by US Patent 6,865,593 and pending patent applications. Webcollage (c) 2000-2019. ***/
+
+if (typeof window.Webcollage == 'undefined')
+  window.Webcollage = {};
+
+window.Webcollage._extForMinMax = new RegExp("(?:\\.min)?\\.(js|css)$", "i");
+
+window.Webcollage.minOrMax = function(fileName) {
+  if(document.location.search.indexOf("webcollage-scripts=max") == -1)
+    return fileName.replace(window.Webcollage._extForMinMax, ".min.$1");
+  else
+    return fileName;
+};
+
+_wccontent = {
+  injectionMethod: "JS",
+  runtimeversion: "2019.1.1.1209",
+  site: "staples",
+  siteName: "Staples",
+  cpi: "RCP443610BLA",
+  channelProductName: "Heavy-Duty Platform Truck Cart, 1200lb Capacity, 24\" X 48\" Platform, Black",
+  pagewidth: "1000",
+  language: "en",
+  isRtl: false,
+  abTesting: {isOn:true, test : { variations : [ {code: "A", f: 0.5},  {code: "B", f: 0.5} ] }},
+  shouldReportSectionViewInPP: true,
+  isSecured: true,
+  isMustBeAdaCompliant: false,
+  scheme: "https",
+  environment: "live",
+  contentgatewayurl: "https://scontent.webcollage.net",
+  defaultdefsresourcebaseurl: "https://scontent.webcollage.net",
+  p2burltemplate: "https://scontent.webcollage.net/%PARTNER_ID%/actions?action=p2b&channel-product-id=%CHANNEL_PRODUCT_ID%",
+  enablesmartbuttons: false,
+  wcfontscompatible: false,
+  acssiteSig: "R01EYVXCZ00K284G4",
+  minAcssiteSig: "R00ZPAJ4400ZBTILF",
+  abtest:
+  {
+    enabled: false,
+    hidefactor : 0.0
+  },
+  aplus:
+  {
+    modulewcpcpairs: [
+      {
+        module: "rubbermaidcommercial",
+        wcpc: "1455244356676"
+      }
+    ],
+
+    html: "<div class=\"wc-responsive\" id=\"wc-aplus\" style=\"max-width: 1000px !important;\"><h1 class=\"wc-ppp-caption\">From the Manufacturer<span class=\"wc-powered-by-tagline wc-top-powered-by-tagline\"><span class=\"wc-powered-by-tagline-separator\">|<\/span><span class=\"wc-powered-by-webcollage-text\">Powered by &nbsp;<img alt=\"Webcollage\" src=\"https:\/\/scontent.webcollage.net\/_wc\/default-defs\/resources\/common\/webcollage.svg?v=2019.1.1.1209\">&nbsp;<\/span><\/span><\/h1><p class=\"wc-rating-question\" id=\"wc-rating-question\"> <span class=\"wc-rating-question-response\" style=\"display: none !important\">Thank You<\/span> <span class=\"wc-rating-question-text\">Is the information in this section helpful?<\/span> <a class=\"wc-rating-answer-yes-wrapper wc-rating-answer-yes\" href=\"javascript:void(0)\" wc-event=\"rating-yes\"><span>Yes<\/span><\/a> <span class=\"wc-rating-answers-separator\">\/<\/span> <a class=\"wc-rating-answer-no-wrapper wc-rating-answer-no\" href=\"javascript:void(0)\" wc-event=\"rating-no\"><span>No<\/span><\/a> <\/p><div class=\"wc-fragment\" data-channel-product-name=\"Heavy-Duty Platform Truck Cart, 1200lb Capacity, 24&#34; X 48&#34; Platform, Black\" data-compiler-v=\"2019.1.1.1209\" data-cpi=\"RCP443610BLA\" data-is-capdesc-open=\"false\" data-language-code=\"en\" data-module-brand=\"Rubbermaid Commercial\" data-module-code=\"rubbermaidcommercial\" data-module-name=\"Rubbermaid Commercial\" data-mpn=\"FG443610BLA\" data-produced=\"2019-03-31 13:51\" data-section-caption=\"GIVE PRODUCTIVITY A LIFT\" data-section-tag=\"demo\" data-section-template-code=\"video-gallery\" data-vendor-name=\"RCP FG443610BLA\" data-wcpc=\"1455244356676\" id=\"wc-demo-76b6ffc9\"><h2 class=\"wc-first-header\">GIVE PRODUCTIVITY A LIFT<\/h2><div class=\"wc-aplus-body\"><div class=\"wc-video-gallery\" data-module-id=\"rubbermaidcommercial\" data-resources-base=\"https:\/\/smedia.webcollage.net\/rwvfp\/wc\/cp\/20889034_legacycode\/module\/rubbermaidcommercial\/\"> <div class=\"wc-json-data\" style=\"display: none !important\">{\"videos\":[{\"duration\":40.917333,\"isAdaCompliantTranscripts\":false,\"sources\":[{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.mp4full.mp4\",\"profile\":\"MP4FULL\",\"width\":960,\"height\":540},{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.mobile.mp4\",\"profile\":\"MOBILE\",\"width\":480,\"height\":270}],\"src\":{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4\",\"width\":1920,\"height\":1080},\"runtimePoster\":{\"sources\":[{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.poster.jpg.w960.jpg\",\"width\":960,\"height\":540},{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.poster.jpg.w480.jpg\",\"width\":480,\"height\":270},{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.poster.jpg.w240.jpg\",\"width\":240,\"height\":135}],\"src\":{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.poster.jpg\",\"width\":1920,\"height\":1080},\"runtimeSrc\":{\"src\":\"\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.poster.jpg.web.jpg\",\"width\":1920,\"height\":1080},\"editorOriginalName\":\"Platform Trucks.mp4\",\"isAdaCompliant\":false},\"assetWrapper\":\"video-gallery\",\"showVideoCaption\":true,\"isAdaCompliant\":false}]}<\/div> <div class=\"wc-meta wc-gallery-thumb\" itemprop=\"video\" itemscope=\"itemscope\" itemtype=\"https:\/\/schema.org\/VideoObject\" module-id=\"rubbermaidcommercial\" wcobj=\"https:\/\/smedia.webcollage.net\/rwvfp\/wc\/cp\/20889034_legacycode\/module\/rubbermaidcommercial\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.mp4full.mp4\" wcobj-type=\"video\/x-flv\" wcpc=\"1455244356676\"> <meta content=\"RCP FG443610BLA\" itemprop=\"name\"><meta content=\"RCP FG443610BLA\" itemprop=\"description\"><meta content=\"https:\/\/smedia.webcollage.net\/rwvfp\/wc\/cp\/20889034_legacycode\/module\/rubbermaidcommercial\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.mp4full.mp4\" itemprop=\"contentUrl\"><meta content=\"540\" itemprop=\"height\"><meta content=\"960\" itemprop=\"width\"><meta content=\"2016-05-27T11:20:15.000-04:00\" itemprop=\"uploadDate\"><meta content=\"https:\/\/smedia.webcollage.net\/rwvfp\/wc\/cp\/20889034_legacycode\/module\/rubbermaidcommercial\/_cp\/products\/1455244356676\/tab-13364422-0fa8-4125-b7a3-d15b453f7651\/cafc4d1a-1293-41b5-ab3e-3879748efaf9.mp4.poster.jpg.w960.jpg\" itemprop=\"thumbnailUrl\"><meta content=\"PT40S\" itemprop=\"duration\"> <\/div> <\/div><\/div><div class=\"wc-clear-both\" style=\"height: 0px !important\"><\/div><\/div><div id=\"wc-fragment-terminator\" style=\"width: 100% !important; clear: both !important; height: 0px !important;\"><\/div><\/div>"
+  }
+};
+
+var _wcscript = document.createElement('script');
+_wcscript.setAttribute("type","text/javascript");
+
+_wcscript.setAttribute("id","wc-loaded-acssite");
+if (document.location.search.indexOf("wc-acs-libs=jit") >= 0) {
+  window.Webcollage.wcAcsLibsParamIsJit = true;
+  _wcscript.setAttribute("src", "https://content-preview.webcollage.net/aplus-partner-defs/staples/resources/connections/aplus/js/acssite%40s.js?wc-acs-libs=jit");
+} else {
+  if (_wccontent.acssiteSig.indexOf("R") == 0) {
+    var acsSiteUrl = Webcollage.minOrMax("https://scontent.webcollage.net/apps/pp/assets/staples/js/acssite%40s.js");
+    if (acsSiteUrl.lastIndexOf(".min.js") + 7 == acsSiteUrl.length)
+        _wcscript.setAttribute("src",  acsSiteUrl + "?ver=" + _wccontent.minAcssiteSig);
+    else
+        _wcscript.setAttribute("src",  acsSiteUrl + "?ver=" + _wccontent.acssiteSig);
+  } else
+    _wcscript.setAttribute("src", Webcollage.minOrMax(_wccontent.contentgatewayurl + "/staples/resources/connections/aplus/js/acssite%40s.js") + "?ver=2019.1.1.1209");
+}
+
+document.getElementsByTagName('head')[0].appendChild(_wcscript);

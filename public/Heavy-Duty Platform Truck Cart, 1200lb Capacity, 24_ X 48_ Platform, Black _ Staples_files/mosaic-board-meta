@@ -1,0 +1,75 @@
+/*** Protected by US Patent 6,865,593 and pending patent applications. Webcollage (c) 2000-2019. ***/
+
+if (typeof _wcSiteContentData === "undefined"){
+    _wcSiteContentData = {};
+}
+_wcSiteContentData.generalData = {
+    injectionMethod: "JS",
+    runtimeversion: "2019.1.1.1209",
+    site: "staples",
+    siteName: "Staples",
+    pagewidth: "1000",
+    language: "en",
+    isRtl: false,
+    isSecured: true,
+    isMustBeAdaCompliant: false,
+    scheme: "https",
+    environment: "live",
+    contentgatewayurl: "https://scontent.webcollage.net",
+    defaultdefsresourcebaseurl: "https://scontent.webcollage.net",
+    p2burltemplate: "https://scontent.webcollage.net/%PARTNER_ID%/actions?action=p2b&channel-product-id=%CHANNEL_PRODUCT_ID%",
+    enablesmartbuttons: false,
+    wcfontscompatible: false,
+    scssiteSig: "R003V0XPQ01V634IA",
+    minScssiteSig: "R01YKHFEX000GMMBE",
+
+    scssiteJitUrl: "https://scontent.webcollage.net/staples/resources/connections/aplus/js/scssite%40s.js" + "?ver=2019.1.1.1209",
+    scsSiteClcUrl: "https://scontent.webcollage.net/apps/pp/assets/staples/js/scssite%40s.js"
+}
+
+
+if (typeof _wcSiteContentData.cpiData === "undefined"){
+    _wcSiteContentData.cpiData = {};
+}
+
+if (!_wcSiteContentData.cpiData["mosaic-board"]) {
+    _wcSiteContentData.cpiData["mosaic-board"] = {
+        contentType: "mosaic-board",
+        containerId: ".wc-mb",
+        requestType: "sections",
+        layoutType: "horizontal",
+        customizations: {"buttonText":"Learn More","contentOffset":20,"maxButtonsAllowed":6,"displayClickToView":true,"addToCartText":"Add To Cart","sectionOrder":["video-gallery","tour","consumer-videos","consumer-images","rich-features","three-sixty","document-gallery","image-gallery","related-products"],"overlayType":"tooltip","tooltipType":"content-type","isContentInline":false,"poweredByWebcollage":"footer","buttonPosition":"top-left","animation":true,"layout":"hero-ribbon","excludedContent":[],"overlaySize":"auto","buttonType":"hotspot","menuOrientation":"left-to-right","defaultOverlayPosition":"below","scrollOverlayToView":false,"maxContentWidth":960},
+        abtest:
+        {
+            enabled: false
+            ,hidefactor: 0
+        },
+        cpis: {}
+    };
+}
+
+_wcSiteContentData.cpiData["mosaic-board"].cpis["RCP443610BLA"] = {
+    cpi: "RCP443610BLA",
+    channelProductName: "Heavy-Duty Platform Truck Cart, 1200lb Capacity, 24\" X 48\" Platform, Black",
+
+    sections: [
+        {
+        sectionName:"GIVE PRODUCTIVITY A LIFT",
+            vendorName:"RCP FG443610BLA",
+            
+        sectionId:"wc-demo-76b6ffc9",
+        sectionTag:"demo",
+        sectionType:"video-gallery"
+        },
+    ],
+    modulewcpcpairs: [
+        {
+            module: "rubbermaidcommercial",
+            wcpc: "1455244356676"
+        }
+    ]
+};
+
+
+
+
