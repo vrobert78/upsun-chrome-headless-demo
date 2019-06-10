@@ -74,7 +74,7 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
 
 <i>Is my search engine working like I expect it to?</i></br></br>
 
-This demo searches <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>.
+In this demo, Puppeteer visits <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>, locates the main search bar and fills it with the user input below. It waits for the search dropdown to appear, then clicks the "All Search Results" option, finally outputting all values returned to the resulting page.
 
 </br></br>
 
@@ -85,7 +85,7 @@ This demo searches <a href="https://developers.google.com/web/">https://develope
 
 <h2>Test the appearance of search results (<a href="/verifysearch/source">Source</a>)</h2>
 
-<i>How do search results to my users?</i></br></br>
+<i>How do search results appear to my users?</i></br></br>
 
 In this demo, Puppeteer visits YouTube and types the value provided below in the search bar. It simulates a click on the Search button, and takes a screenshot of the result.
 
