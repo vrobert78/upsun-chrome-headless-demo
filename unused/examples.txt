@@ -1,4 +1,0 @@
-https://github.com/chuongtrh/html_to_pdf
-
-https://github.com/miyakogi/pyppeteer
-https://github.com/sandro/capybara-chrome

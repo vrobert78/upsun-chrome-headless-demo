@@ -7,7 +7,6 @@ const platformsh = require('platformsh-config');
 // Require local examples
 var pdfs = require("./examples/pdfs.js");
 var screenshots = require("./examples/screenshots.js");
-var verifySource = require('./examples/verifySearch.js');
 
 // Build the application
 var app = express();
@@ -17,16 +16,14 @@ app.use(express.static(__dirname + '/public'));
 
 // Set rate limits
 app.set('trust proxy', 1);
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 50 // limit each IP to 50 requests per windowMs
 });
-
 // Apply to all requests
 app.use(limiter);
 
-// Define the index route
+// Define the index route content
 app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
   res.write(`<html>
@@ -67,20 +64,6 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     </br></br>
     <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
-
-<h2>Test the appearance of search results (<a href="/verifysearch/source">Source</a>)</h2>
-
-<i>How do search results appear to my users?</i></br></br>
-
-In this demo, Puppeteer visits YouTube and types the value provided below in the search bar. It simulates a click on the Search button, and takes a screenshot of the result.
-
-</br></br>
-
-<form method="get" action="/verifysearch/result">
-    <input type="text" name="verifysearchTerm" value="Platform.sh">
-    <input type="submit">
-</form>
-
 `);
     res.end(`</body></html>`);
 })
@@ -107,17 +90,6 @@ app.get('/screenshots/result', async function(req, res){
   res.download(file);
 });
 
-// Define Verify Search Appearance route
-app.get('/verifysearch/result', async function(req, res){
-  // Create a randomly generated ID number for the current screenshot
-  var screenshotID = uuidv4();
-  // Generate the screenshot
-  await verifySource.takeScreenshot(screenshotID, req.query['verifysearchTerm'])
-  // Define and download the file
-  const file = `screenshots/${screenshotID}.png`;
-  res.download(file);
-});
-
 // PDFs source
 app.get('/pdfs/source', (req, res) => {
     res.write(fs.readFileSync('./examples/pdfs.js', 'utf8'));
@@ -126,11 +98,6 @@ app.get('/pdfs/source', (req, res) => {
 // Screenshots source
 app.get('/screenshots/source', (req, res) => {
     res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
-});
-
-// Verify Search Appearance source
-app.get('/verifysearch/source', (req, res) => {
-    res.write(fs.readFileSync('./examples/verifySearch.js', 'utf8'));
 });
 
 // Get PORT and start the server
