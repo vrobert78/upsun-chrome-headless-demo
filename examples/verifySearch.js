@@ -16,7 +16,7 @@ exports.takeScreenshot = async function (screenshotID, searchTerm) {
 
         // Open a new page to the given url and take the screenshot
         const page = await browser.newPage();
-        await page.goto('https://youtube.com')
+        await page.goto('https://youtube.com', {"waitUntil" : "networkidle0"})
         await page.type('#search', searchTerm)
         await page.click('button#search-icon-legacy')
         await page.waitForSelector('ytd-thumbnail.ytd-video-renderer')
