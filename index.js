@@ -7,8 +7,6 @@ const platformsh = require('platformsh-config');
 // Require local examples
 var pdfs = require("./examples/pdfs.js");
 var screenshots = require("./examples/screenshots.js");
-var searches = require("./examples/search.js");
-var viewSource = require("./examples/viewSource.js");
 var verifySource = require('./examples/verifySearch.js');
 
 // Build the application
@@ -70,19 +68,6 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
 
-<h2>Retrieve search results (<a href="/search/source">Source</a>)</h2>
-
-<i>Is my search engine working like I expect it to?</i></br></br>
-
-In this demo, Puppeteer visits <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>, locates the main search bar and fills it with the user input below. It waits for the search dropdown to appear, then clicks the "All Search Results" option, finally outputting all values returned to the resulting page.
-
-</br></br>
-
-<form method="get" action='/search/result'>
-    <input type="text" name="searchField" value="Headless Chrome">
-    <input type="submit">
-</form>
-
 <h2>Test the appearance of search results (<a href="/verifysearch/source">Source</a>)</h2>
 
 <i>How do search results appear to my users?</i></br></br>
@@ -95,19 +80,6 @@ In this demo, Puppeteer visits YouTube and types the value provided below in the
     <input type="text" name="verifysearchTerm" value="Platform.sh">
     <input type="submit">
 </form>
-
-<h2>View page links (<a href="/pagesource/source">Source</a>)</h2>
-
-Return all links on a given page.
-
-</br></br>
-
-<form method="get" action='/pagesource/result'>
-    <input type="text" name="sourceURL" value="https://docs.platform.sh/">
-    <input type="submit">
-</form>
-
-<i>Modified from <a href="https://github.com/GoogleChromeLabs/puppeteer-examples/blob/master/view-source.js">GoogleChromeLabs</a>.</i>
 
 `);
     res.end(`</body></html>`);
@@ -135,19 +107,6 @@ app.get('/screenshots/result', async function(req, res){
   res.download(file);
 });
 
-// Define Search result route
-app.get('/search/result', async function(req, res){
-    // Generate list of links from search results
-    var links = await searches.searchPage(req.query['searchField']);
-    res.write(links);
-});
-
-// Define Page Source result route
-app.get('/pagesource/result', async function(req, res){
-    var currentSource = await viewSource.getPageSource(req.query['sourceURL']);
-    res.write(currentSource);
-});
-
 // Define Verify Search Appearance route
 app.get('/verifysearch/result', async function(req, res){
   // Create a randomly generated ID number for the current screenshot
@@ -167,16 +126,6 @@ app.get('/pdfs/source', (req, res) => {
 // Screenshots source
 app.get('/screenshots/source', (req, res) => {
     res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
-});
-
-// Search source
-app.get('/search/source', (req, res) => {
-    res.write(fs.readFileSync('./examples/search.js', 'utf8'));
-});
-
-// Page Source source
-app.get('/pagesource/source', (req, res) => {
-    res.write(fs.readFileSync('./examples/viewSource.js', 'utf8'));
 });
 
 // Verify Search Appearance source
