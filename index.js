@@ -64,9 +64,9 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
 <form method="get" action="/screenshots/result">
     <input type="text" name="screenshotURL" value="https://platform.sh/">
     <input type="submit">
-    </br>
+    </br></br>
     <i>How about on mobile devices?</i>
-    </br>
+    </br></br>
     <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
 </form>
 
@@ -96,14 +96,14 @@ In this demo, Puppeteer visits YouTube and types the value provided below in the
     <input type="submit">
 </form>
 
-<h2>View page source (<a href="/pagesource/source">Source</a>)</h2>
+<h2>View page links (<a href="/pagesource/source">Source</a>)</h2>
 
-View the page source of a given URL.
+Return all links on a given page.
 
 </br></br>
 
 <form method="get" action='/pagesource/result'>
-    <input type="text" name="sourceURL" value="https://platform.sh/">
+    <input type="text" name="sourceURL" value="https://docs.platform.sh/">
     <input type="submit">
 </form>
 
