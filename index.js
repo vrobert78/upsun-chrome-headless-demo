@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 
 <h2>Generate a PDF of a page (<a href="/pdfs/source">Source</a>)</h2>
 
-<i>I need to generate PDFs of pages.</i>
+<i>I need to generate PDFs of pages.</i></br></br>
 
 Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
@@ -55,7 +55,7 @@ Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.
 
 <h2>Take a screenshot of a page (<a href="/screenshots/source">Source</a>)</h2>
 
-<i>Does my site look like I intended it to?</i>
+<i>Does my site look like I intended it to?</i></br></br>
 
 Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
 
@@ -72,7 +72,7 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
 
 <h2>Retrieve search results (<a href="/search/source">Source</a>)</h2>
 
-<i>Is my search engine working like I expect it to?</i>
+<i>Is my search engine working like I expect it to?</i></br></br>
 
 This demo searches <a href="https://developers.google.com/web/">https://developers.google.com/web/</a>.
 
@@ -85,7 +85,7 @@ This demo searches <a href="https://developers.google.com/web/">https://develope
 
 <h2>Test the appearance of search results (<a href="/verifysearch/source">Source</a>)</h2>
 
-<i>How do search results to my users?</i>
+<i>How do search results to my users?</i></br></br>
 
 In this demo, Puppeteer visits YouTube and types the value provided below in the search bar. It simulates a click on the Search button, and takes a screenshot of the result.
 
@@ -97,8 +97,6 @@ In this demo, Puppeteer visits YouTube and types the value provided below in the
 </form>
 
 <h2>View page source (<a href="/pagesource/source">Source</a>)</h2>
-
-<i>My application renders client-side. Did it work the way I intended it to?</i>
 
 View the page source of a given URL.
 
