@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/public'));
 // Set rate limits
 app.set('trust proxy', 1);
 const limiter = rateLimit({
-  windowMs: 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1 // limit each IP to 50 requests per windowMs
 });
 // Apply to all requests
