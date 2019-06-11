@@ -19,7 +19,7 @@ app.set('trust proxy', 1);
 const limiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 5 minutes
   max: 1, // limit each IP to 50 requests per windowMs
-  message: 'This demo permits 10 requests every 5 minutes. <br><br>You can try again later, or you can visit the <a href="https://docs.platform.sh/configuration/services/headless-chrome.html">Headless Chrome documentation</a> to configure the service on your own projects.'
+  message: '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>This demo permits 10 requests every 5 minutes. <br><br>You can try again later, or you can visit the <a href="https://docs.platform.sh/configuration/services/headless-chrome.html">Headless Chrome documentation</a> to configure the service on your own projects.</body></html>'
 });
 // Apply to all requests
 app.use(limiter);
