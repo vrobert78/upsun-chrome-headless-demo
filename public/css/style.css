@@ -11,7 +11,7 @@ html{
 }
 body{
     margin:10px;
-    padding:10px
+    padding:10px;
 }
 article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{
     display:block
@@ -131,12 +131,13 @@ html {
 }
 body {
   max-width: 1140px;
-  background: #fff;
   margin: 0 auto;
   padding: 40px;
   color: #38485e;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   font-size: 15px;
+  padding-top: 128px;
+  background: #fff url("https://platform.sh/logos/redesign/Platformsh_logo_black.svg") no-repeat 40px 40px;
+  background-size: 172px auto;
 }
 
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
