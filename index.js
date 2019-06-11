@@ -63,7 +63,7 @@ Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Plat
     </br></br>
     <i>How about on mobile devices?</i>
     </br></br>
-    <input type="checkbox" name="emulateMobile" value=true> Emulate mobile device<br>
+    <label class="checkbox"><input type="checkbox" name="emulateMobile" value=true> Emulate mobile device</label><br>
 </form>
 `);
     res.end(`</body></html>`);
