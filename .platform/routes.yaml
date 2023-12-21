@@ -1,8 +1,0 @@
-"https://{default}/":
-    id: main
-    type: upstream
-    upstream: "nodejs:http"
-
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"

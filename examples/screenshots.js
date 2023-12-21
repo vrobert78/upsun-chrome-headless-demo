@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
-const devices = require('puppeteer/DeviceDescriptors');
 const platformsh = require('platformsh-config');
+const devices = puppeteer.devices;
 
 var exports = module.exports = {};
 

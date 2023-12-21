@@ -1,5 +1,5 @@
 const fs = require('fs');
-const uuidv4 = require('uuid/v4')
+const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const rateLimit = require("express-rate-limit");
 const platformsh = require('platformsh-config');
@@ -19,7 +19,7 @@ app.set('trust proxy', 1);
 const limiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 5 minutes
   max: 10, // limit each IP to 10 requests per windowMs
-  message: 'This demo permits 10 requests every 5 minutes. <br><br>You can try again later, or you can visit the <a href="https://docs.platform.sh/configuration/services/headless-chrome.html">Headless Chrome documentation</a> to configure the service on your own projects.'
+  message: 'This demo permits 10 requests every 5 minutes. <br><br>You can try again later, or you can visit the <a href="https://docs.upsun.com/add-services/headless-chrome.html">Headless Chrome documentation</a> to configure the service on your own projects.'
 });
 // Apply to all requests
 app.use(limiter);
@@ -29,23 +29,23 @@ app.get('/', (req, res) => {
   res.writeHead(200, {"Content-Type": "text/html"});
   res.write(`<html>
 <head>
-    <title>Headless Chrome on Platform.sh</title>
+    <title>Headless Chrome on Upsun.com</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
 
-<h1>Headless Chrome on Platform.sh</h1>
+<h1>Headless Chrome on Upsun.com</h1>
 
 <h2>Generate a PDF of a page (<a href="/pdfs/source">Source</a>)</h2>
 
 <i>I need to generate PDFs of pages.</i></br></br>
 
-Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
+Click 'Submit' to generate a PDF of the <a href="https://upsun.com/">Upsun.com website</a>, or paste in another URL.
 
 </br></br>
 
 <form method="get" action="/pdfs/result">
-    <input type="text" name="pdfURL" value="https://platform.sh/">
+    <input type="text" name="pdfURL" value="https://upsun.com/">
     <input type="submit">
 </form>
 
@@ -53,12 +53,12 @@ Click 'Submit' to generate a PDF of the <a href="https://platform.sh/">Platform.
 
 <i>Does my site look like I intended it to?</i></br></br>
 
-Click 'Submit' to create a screenshot of the <a href="https://platform.sh/">Platform.sh website</a>, or paste in another URL.
+Click 'Submit' to create a screenshot of the <a href="https://upsun.com/">Upsun.com website</a>, or paste in another URL.
 
 </br></br>
 
 <form method="get" action="/screenshots/result">
-    <input type="text" name="screenshotURL" value="https://platform.sh/">
+    <input type="text" name="screenshotURL" value="https://upsun.com/">
     <input type="submit">
     </br></br>
     <i>How about on mobile devices?</i>
@@ -94,11 +94,13 @@ app.get('/screenshots/result', async function(req, res){
 // PDFs source
 app.get('/pdfs/source', (req, res) => {
     res.write(fs.readFileSync('./examples/pdfs.js', 'utf8'));
+    res.end();
 });
 
 // Screenshots source
 app.get('/screenshots/source', (req, res) => {
     res.write(fs.readFileSync('./examples/screenshots.js', 'utf8'));
+    res.end();
 });
 
 // Get PORT and start the server

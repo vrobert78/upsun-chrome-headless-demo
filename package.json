@@ -9,10 +9,10 @@
   "author": "Chad Carlson",
   "license": "MIT",
   "dependencies": {
-    "platformsh-config": "^2.0.0",
-    "puppeteer": "^1.14.0",
-    "express": "^4.16.4",
-    "uuid": "^3.3.2",
-    "express-rate-limit": "^4.0.4"
+    "platformsh-config": "^2.4.1",
+    "puppeteer": "^21.6.1",
+    "express": "^4.18.2",
+    "uuid": "^9.0.1",
+    "express-rate-limit": "^7.1.5"
   }
 }

@@ -1,0 +1,30 @@
+applications:
+
+  nodejs:
+
+    type: nodejs:20
+
+    relationships:
+      headless: "headless:http"
+
+    crons:
+      cleanup:
+        spec: '*/30 * * * *'
+        cmd: rm pdfs/* && rm screenshots/*
+
+    web:
+      commands:
+        start: "node index.js"
+
+    mounts:
+      "/pdfs":
+        source: tmp
+        source_path: "pdfs/"
+      "/screenshots":
+        source: tmp
+        source_path: "screenshots/"
+
+
+services:
+  headless:
+      type: chrome-headless:120
